@@ -82,7 +82,7 @@
         var ctx = canvas.getContext("2d");
 
         var githubPrefix = "/DLPortraits";
-        // var githubPrefix = "/DLPortraits"; // Debug use
+        //var githubPrefix = ""; // Debug use
         var portraitPath = "/portrait_output/";
         var imgID = "";
         var imgGroup = new Array();
@@ -218,14 +218,15 @@
             $("select.face-select").imagepicker({
                 selected: function(select, option, event) {
                     faceID = this.val()
-                    faceImg.src = githubPrefix + option.target.currentSrc;
+                    faceImg.src = option.target.currentSrc;
+                    console.log(faceImg.src)
                     mergeImage();
                 }
             });
             $("select.mouth-select").imagepicker({
                 selected: function(select, option, event) {
                     mouthID = this.val()
-                    mouthImg.src = githubPrefix + option.target.currentSrc;
+                    mouthImg.src = option.target.currentSrc;
                     mergeImage();
                 }
             });
