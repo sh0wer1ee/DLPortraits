@@ -82,7 +82,7 @@
         var ctx = canvas.getContext("2d");
 
         var githubPrefix = "/DLPortraits";
-        // var githubPrefix = "/DLPortraits"; // Debug
+        // var githubPrefix = "/DLPortraits"; // Debug use
         var portraitPath = "/portrait_output/";
         var imgID = "";
         var imgGroup = new Array();
@@ -154,7 +154,7 @@
             faceImg.src = "";
             mouthImg.src = "";
             // load image
-            baseImg.src = `${portraitPath}${imgID}/${imgID}_base.png`;
+            baseImg.src = `${githubPrefix}${portraitPath}${imgID}/${imgID}_base.png`;
             baseImg.onload = function() {
                 logText.innerText = `chara ${imgID} loaded.`;
                 ctx.drawImage(baseImg, 0, 0);
@@ -168,7 +168,7 @@
 
         // fetch data json
         function loadJsonData() {
-            fetch(`${portraitPath}${imgID}/data.json`)
+            fetch(`${githubPrefix}${portraitPath}${imgID}/data.json`)
                 .then(function(response) {
                     if (!response.ok) {
                         throw Error(response.statusText);
