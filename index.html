@@ -1,0 +1,255 @@
+<html>
+
+<head>
+    <title>portrait viewer</title>
+    <link rel="stylesheet" type="text/css" href="image-picker/image-picker.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="image-picker/image-picker.js" type="text/javascript"></script>
+</head>
+
+<body onload="buildCharaOptions()">
+
+    <style type="text/css">
+        #function-area {
+            float: left;
+            width: 45%;
+            overflow: auto;
+            height: 100%;
+        }
+        
+        #canvas-area {
+            float: right;
+            width: 54%;
+            overflow: auto;
+            height: 100%;
+        }
+        
+        #face-area {
+            height: 40%;
+            overflow: auto;
+        }
+        
+        #mouth-area {
+            height: 40%;
+            overflow: auto;
+        }
+    </style>
+
+    <div id="function-area">
+        <div>
+            <span class="inlineBlock">
+                <label for="chara-select">CharaID: </label>
+                <select class = "chara-select" id = "chara-select"></select>
+                <button id="load-btn">Load chara</button>
+                <span id="log-text" style="font-size: 10px; color: teal;"></span>
+            </span>
+        </div>
+
+        <br>
+
+        <div class="picker" id="picker">
+            <div id="face-area" style="border:1px solid #000000;">
+                <label for="face-select">choose face parts: </label>
+                <select class='face-select' id='face-select'></select>
+            </div>
+            <br>
+            <div id="mouth-area" style="border:1px solid #000000;">
+                <label for="mouth-select">choose mouth parts: </label>
+                <select class='mouth-select' id='mouth-select'></select>
+            </div>
+
+        </div>
+
+
+    </div>
+    <div id="canvas-area">
+        <div>
+            <button id="reset-btn">Reset</button>
+            <button id="download-btn">Download Image</button>
+        </div>
+        <br>
+        <canvas id="canvas" width="1024" height="1024" style="border:2px solid #000000; text-align:center; margin: auto;"></canvas>
+    </div>
+
+    <script>
+        $("select").imagepicker();
+
+        var canvas = document.getElementById("canvas");
+        var logText = document.getElementById("log-text");
+        var faceOptions = document.getElementById("face-select");
+        var mouthOptions = document.getElementById("mouth-select");
+        var downloadBtn = document.getElementById("download-btn");
+        var ctx = canvas.getContext("2d");
+        var portraitPath = "/portrait_output/";
+
+        var imgID = "";
+        var imgGroup = new Array();
+        var baseImg = new Image();
+        var faceImg = new Image();
+        var faceID = "";
+        var mouthImg = new Image();
+        var mouthID = "";
+        var loaded = false;
+        var fileList = [];
+        var offset = [];
+
+        function buildCharaOptions() {
+            fetch(`${portraitPath}/dirData.json`)
+                .then(function(response) {
+                    if (!response.ok) {
+                        throw Error(response.statusText);
+                    }
+                    return response;
+                })
+                .then(response => response.json())
+                .then(json => {
+                    json['fileList'].forEach(function(item, index) {
+                        var option = document.createElement("option");
+                        option.value = item;
+                        option.text = item;
+                        document.getElementById("chara-select").appendChild(option);
+                    });
+                    $("select.chara-select").imagepicker({
+                        hide_select: false,
+                        show_label: true,
+                    });
+                }).catch(function(error) {
+                    console.log(error);
+                    document.getElementById("log-text").innerText = `Error in fileList data json, please check the console.`;
+                });
+        }
+
+
+        document.getElementById("load-btn").addEventListener("click",
+            function() {
+                let charaSelect = document.getElementById("chara-select");
+                imgID = charaSelect.options[charaSelect.selectedIndex].value
+                loadChara();
+            }
+        );
+        document.getElementById("reset-btn").addEventListener("click",
+            function() {
+                if (loaded) {
+                    resetCanvas();
+                    faceOptions.selectedIndex = -1;
+                    mouthOptions.selectedIndex = -1;
+                    $("select").imagepicker();
+                }
+            }
+        );
+        document.getElementById("download-btn").addEventListener("click",
+            function() {
+                if (loaded) {
+                    downloadCanvasAsImage(`${imgID}_${faceID}_${mouthID}.png`)
+                }
+            }
+        );
+
+
+
+        function loadChara() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            faceImg.src = "";
+            mouthImg.src = "";
+            // load image
+            baseImg.src = `${portraitPath}${imgID}/${imgID}_base.png`;
+            baseImg.onload = function() {
+                logText.innerText = `chara ${imgID} loaded.`;
+                ctx.drawImage(baseImg, 0, 0);
+                loadJsonData();
+            }
+            baseImg.onerror = function() {
+                logText.innerText = `Error in loading chara ${imgID}, please check the console.`;
+                loaded = false;
+            }
+        }
+
+        // fetch data json
+        function loadJsonData() {
+            fetch(`${portraitPath}${imgID}/data.json`)
+                .then(function(response) {
+                    if (!response.ok) {
+                        throw Error(response.statusText);
+                    }
+                    return response;
+                })
+                .then(response => response.json())
+                .then(json => {
+                    offset = [];
+                    offset.push(json['offset']['x']);
+                    offset.push(json['offset']['y']);
+                    fileList = json['fileList'];
+                    loadOptions();
+                }).catch(function(error) {
+                    console.log(error);
+                    logText.innerText = `Error in loading chara ${imgID} data json, please check the console.`;
+                    loaded = false;
+                });
+        }
+
+        // load select options
+        function loadOptions() {
+            $("select.face-select").empty()
+            $("select.mouth-select").empty()
+            fileList.forEach(function(item, index) {
+                // TODO: classify the face parts and the mouth parts. (Using indexTable) 
+
+                var optf = document.createElement('option');
+                optf.setAttribute("data-img-src", item);
+                optf.setAttribute("id", index)
+                optf.setAttribute("value", index)
+                var optm = document.createElement('option');
+                optm.setAttribute("data-img-src", item);
+                optm.setAttribute("id", index)
+                optm.setAttribute("value", index)
+
+                faceOptions.appendChild(optf);
+                mouthOptions.appendChild(optm);
+            });
+            faceOptions.selectedIndex = -1;
+            mouthOptions.selectedIndex = -1;
+            loaded = true;
+            refreshPicker();
+        }
+
+        function refreshPicker() {
+            $("select.face-select").imagepicker({
+                selected: function(select, option, event) {
+                    faceID = this.val()
+                    faceImg.src = option.target.currentSrc;
+                    mergeImage();
+                }
+            });
+            $("select.mouth-select").imagepicker({
+                selected: function(select, option, event) {
+                    mouthID = this.val()
+                    mouthImg.src = option.target.currentSrc;
+                    mergeImage();
+                }
+            });
+        }
+
+        function mergeImage() {
+            resetCanvas();
+            ctx.drawImage(faceImg, offset[0], offset[1]);
+            ctx.drawImage(mouthImg, offset[0], offset[1]);
+        }
+
+        function resetCanvas() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.drawImage(baseImg, 0, 0);
+        }
+
+        function downloadCanvasAsImage(filename) {
+            let downloadLink = document.createElement('a');
+            downloadLink.setAttribute('download', filename);
+            canvas.toBlob(function(blob) {
+                let url = URL.createObjectURL(blob);
+                downloadLink.setAttribute('href', url);
+                downloadLink.click();
+            });
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,36 @@
+{
+  "offset": {
+    "x": 443,
+    "y": 239
+  },
+  "indexTable": {
+    "0": 0,
+    "1": 0,
+    "2": 0,
+    "3": 1,
+    "4": 1,
+    "5": 1,
+    "6": 1,
+    "7": 0,
+    "8": 1,
+    "9": 1,
+    "10": 1,
+    "11": 1,
+    "12": 1
+  },
+  "fileList": [
+    "/portrait_output/120151_02/120151_02_parts_c000.png",
+    "/portrait_output/120151_02/120151_02_parts_c001.png",
+    "/portrait_output/120151_02/120151_02_parts_c002.png",
+    "/portrait_output/120151_02/120151_02_parts_c003.png",
+    "/portrait_output/120151_02/120151_02_parts_c004.png",
+    "/portrait_output/120151_02/120151_02_parts_c005.png",
+    "/portrait_output/120151_02/120151_02_parts_c006.png",
+    "/portrait_output/120151_02/120151_02_parts_c007.png",
+    "/portrait_output/120151_02/120151_02_parts_c008.png",
+    "/portrait_output/120151_02/120151_02_parts_c009.png",
+    "/portrait_output/120151_02/120151_02_parts_c010.png",
+    "/portrait_output/120151_02/120151_02_parts_c011.png",
+    "/portrait_output/120151_02/120151_02_parts_c012.png"
+  ]
+}

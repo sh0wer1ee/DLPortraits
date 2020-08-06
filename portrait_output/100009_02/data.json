@@ -1,0 +1,22 @@
+{
+  "offset": {
+    "x": 467,
+    "y": 267
+  },
+  "indexTable": {
+    "0": -2,
+    "1": 0,
+    "2": 1,
+    "3": 0,
+    "4": 1,
+    "5": 1
+  },
+  "fileList": [
+    "/portrait_output/100009_02/100009_02_parts_c000.png",
+    "/portrait_output/100009_02/100009_02_parts_c001.png",
+    "/portrait_output/100009_02/100009_02_parts_c002.png",
+    "/portrait_output/100009_02/100009_02_parts_c003.png",
+    "/portrait_output/100009_02/100009_02_parts_c004.png",
+    "/portrait_output/100009_02/100009_02_parts_c005.png"
+  ]
+}

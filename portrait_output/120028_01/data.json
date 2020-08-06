@@ -1,0 +1,22 @@
+{
+  "offset": {
+    "x": 342,
+    "y": 277
+  },
+  "indexTable": {
+    "0": 0,
+    "1": 0,
+    "2": 1,
+    "3": 2,
+    "4": 2,
+    "5": 3
+  },
+  "fileList": [
+    "/portrait_output/120028_01/120028_01_parts_c000.png",
+    "/portrait_output/120028_01/120028_01_parts_c001.png",
+    "/portrait_output/120028_01/120028_01_parts_c002.png",
+    "/portrait_output/120028_01/120028_01_parts_c003.png",
+    "/portrait_output/120028_01/120028_01_parts_c004.png",
+    "/portrait_output/120028_01/120028_01_parts_c005.png"
+  ]
+}

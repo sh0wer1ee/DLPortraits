@@ -1,0 +1,26 @@
+{
+  "offset": {
+    "x": 370,
+    "y": 264
+  },
+  "indexTable": {
+    "0": 0,
+    "1": 0,
+    "2": 0,
+    "3": 0,
+    "4": 0,
+    "5": 0,
+    "6": 0,
+    "7": 0
+  },
+  "fileList": [
+    "/portrait_output/100033_01/100033_01_parts_c000.png",
+    "/portrait_output/100033_01/100033_01_parts_c001.png",
+    "/portrait_output/100033_01/100033_01_parts_c002.png",
+    "/portrait_output/100033_01/100033_01_parts_c003.png",
+    "/portrait_output/100033_01/100033_01_parts_c004.png",
+    "/portrait_output/100033_01/100033_01_parts_c005.png",
+    "/portrait_output/100033_01/100033_01_parts_c006.png",
+    "/portrait_output/100033_01/100033_01_parts_c007.png"
+  ]
+}
