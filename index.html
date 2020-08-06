@@ -80,8 +80,10 @@
         var mouthOptions = document.getElementById("mouth-select");
         var downloadBtn = document.getElementById("download-btn");
         var ctx = canvas.getContext("2d");
-        var portraitPath = "/DLPortraits/portrait_output/";
 
+        var githubPrefix = "/DLPortraits";
+        // var githubPrefix = "/DLPortraits"; // Debug
+        var portraitPath = "/portrait_output/";
         var imgID = "";
         var imgGroup = new Array();
         var baseImg = new Image();
@@ -94,7 +96,7 @@
         var offset = [];
 
         function buildCharaOptions() {
-            fetch(`${portraitPath}dirData.json`)
+            fetch(`${githubPrefix}${portraitPath}dirData.json`)
                 .then(function(response) {
                     if (!response.ok) {
                         throw Error(response.statusText);
@@ -216,14 +218,14 @@
             $("select.face-select").imagepicker({
                 selected: function(select, option, event) {
                     faceID = this.val()
-                    faceImg.src = option.target.currentSrc;
+                    faceImg.src = githubPrefix + option.target.currentSrc;
                     mergeImage();
                 }
             });
             $("select.mouth-select").imagepicker({
                 selected: function(select, option, event) {
                     mouthID = this.val()
-                    mouthImg.src = option.target.currentSrc;
+                    mouthImg.src = githubPrefix + option.target.currentSrc;
                     mergeImage();
                 }
             });
