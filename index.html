@@ -102,7 +102,7 @@
         var mouthImg = new Image();
         var mouthID = "";
         var loaded = false;
-        var fileList = [];
+        var partsData = [];
         var offset = [];
 
         function buildCharaOptions() {
@@ -190,7 +190,7 @@
                     offset = [];
                     offset.push(json['offset']['x']);
                     offset.push(json['offset']['y']);
-                    fileList = json['fileList'];
+                    partsData = json['partsData'];
                     loadOptions();
                 }).catch(function(error) {
                     console.log(error);
@@ -203,19 +203,18 @@
         function loadOptions() {
             $("select.face-select").empty()
             $("select.mouth-select").empty()
-            fileList.forEach(function(item, index) {
-                // TODO: classify the face parts and the mouth parts. (Using indexTable) 
-
+            partsData["faceParts"].forEach(function(item, index) {
                 var optf = document.createElement('option');
                 optf.setAttribute("data-img-src", item);
                 optf.setAttribute("id", index)
                 optf.setAttribute("value", index)
+                faceOptions.appendChild(optf);
+            });
+            partsData["mouthParts"].forEach(function(item, index) {
                 var optm = document.createElement('option');
                 optm.setAttribute("data-img-src", item);
                 optm.setAttribute("id", index)
                 optm.setAttribute("value", index)
-
-                faceOptions.appendChild(optf);
                 mouthOptions.appendChild(optm);
             });
             faceOptions.selectedIndex = -1;

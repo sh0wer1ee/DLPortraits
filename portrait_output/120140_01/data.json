@@ -3,18 +3,14 @@
     "x": 446,
     "y": 146
   },
-  "indexTable": {
-    "0": 0,
-    "1": 0,
-    "2": 0,
-    "3": 0,
-    "4": 0
-  },
-  "fileList": [
-    "/DLPortraits/portrait_output/120140_01/120140_01_parts_c000.png",
-    "/DLPortraits/portrait_output/120140_01/120140_01_parts_c001.png",
-    "/DLPortraits/portrait_output/120140_01/120140_01_parts_c002.png",
-    "/DLPortraits/portrait_output/120140_01/120140_01_parts_c003.png",
-    "/DLPortraits/portrait_output/120140_01/120140_01_parts_c004.png"
-  ]
+  "partsData": {
+    "faceParts": [
+      "/DLPortraits/portrait_output/120140_01/120140_01_parts_c000.png",
+      "/DLPortraits/portrait_output/120140_01/120140_01_parts_c001.png",
+      "/DLPortraits/portrait_output/120140_01/120140_01_parts_c002.png",
+      "/DLPortraits/portrait_output/120140_01/120140_01_parts_c003.png",
+      "/DLPortraits/portrait_output/120140_01/120140_01_parts_c004.png"
+    ],
+    "mouthParts": []
+  }
 }

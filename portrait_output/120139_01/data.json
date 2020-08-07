@@ -3,36 +3,24 @@
     "x": 441,
     "y": 236
   },
-  "indexTable": {
-    "0": 0,
-    "1": 0,
-    "2": 0,
-    "3": 1,
-    "4": 1,
-    "5": 1,
-    "6": 1,
-    "7": 1,
-    "8": 0,
-    "9": 1,
-    "10": 1,
-    "11": 1,
-    "12": 1,
-    "13": 1
-  },
-  "fileList": [
-    "/DLPortraits/portrait_output/120139_01/120139_01_parts_c000.png",
-    "/DLPortraits/portrait_output/120139_01/120139_01_parts_c001.png",
-    "/DLPortraits/portrait_output/120139_01/120139_01_parts_c002.png",
-    "/DLPortraits/portrait_output/120139_01/120139_01_parts_c003.png",
-    "/DLPortraits/portrait_output/120139_01/120139_01_parts_c004.png",
-    "/DLPortraits/portrait_output/120139_01/120139_01_parts_c005.png",
-    "/DLPortraits/portrait_output/120139_01/120139_01_parts_c006.png",
-    "/DLPortraits/portrait_output/120139_01/120139_01_parts_c007.png",
-    "/DLPortraits/portrait_output/120139_01/120139_01_parts_c008.png",
-    "/DLPortraits/portrait_output/120139_01/120139_01_parts_c009.png",
-    "/DLPortraits/portrait_output/120139_01/120139_01_parts_c010.png",
-    "/DLPortraits/portrait_output/120139_01/120139_01_parts_c011.png",
-    "/DLPortraits/portrait_output/120139_01/120139_01_parts_c012.png",
-    "/DLPortraits/portrait_output/120139_01/120139_01_parts_c013.png"
-  ]
+  "partsData": {
+    "faceParts": [
+      "/DLPortraits/portrait_output/120139_01/120139_01_parts_c000.png",
+      "/DLPortraits/portrait_output/120139_01/120139_01_parts_c001.png",
+      "/DLPortraits/portrait_output/120139_01/120139_01_parts_c002.png",
+      "/DLPortraits/portrait_output/120139_01/120139_01_parts_c008.png"
+    ],
+    "mouthParts": [
+      "/DLPortraits/portrait_output/120139_01/120139_01_parts_c003.png",
+      "/DLPortraits/portrait_output/120139_01/120139_01_parts_c004.png",
+      "/DLPortraits/portrait_output/120139_01/120139_01_parts_c005.png",
+      "/DLPortraits/portrait_output/120139_01/120139_01_parts_c006.png",
+      "/DLPortraits/portrait_output/120139_01/120139_01_parts_c007.png",
+      "/DLPortraits/portrait_output/120139_01/120139_01_parts_c009.png",
+      "/DLPortraits/portrait_output/120139_01/120139_01_parts_c010.png",
+      "/DLPortraits/portrait_output/120139_01/120139_01_parts_c011.png",
+      "/DLPortraits/portrait_output/120139_01/120139_01_parts_c012.png",
+      "/DLPortraits/portrait_output/120139_01/120139_01_parts_c013.png"
+    ]
+  }
 }

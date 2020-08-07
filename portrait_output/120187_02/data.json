@@ -3,12 +3,11 @@
     "x": 465,
     "y": 338
   },
-  "indexTable": {
-    "0": 0,
-    "1": 0
-  },
-  "fileList": [
-    "/DLPortraits/portrait_output/120187_02/120187_02_parts_c000.png",
-    "/DLPortraits/portrait_output/120187_02/120187_02_parts_c001.png"
-  ]
+  "partsData": {
+    "faceParts": [
+      "/DLPortraits/portrait_output/120187_02/120187_02_parts_c000.png",
+      "/DLPortraits/portrait_output/120187_02/120187_02_parts_c001.png"
+    ],
+    "mouthParts": []
+  }
 }

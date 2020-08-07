@@ -3,24 +3,18 @@
     "x": 455,
     "y": 280
   },
-  "indexTable": {
-    "0": 0,
-    "1": 0,
-    "2": 1,
-    "3": 1,
-    "4": 1,
-    "5": 1,
-    "6": 1,
-    "7": 1
-  },
-  "fileList": [
-    "/DLPortraits/portrait_output/100004_16/100004_16_parts_c000.png",
-    "/DLPortraits/portrait_output/100004_16/100004_16_parts_c001.png",
-    "/DLPortraits/portrait_output/100004_16/100004_16_parts_c002.png",
-    "/DLPortraits/portrait_output/100004_16/100004_16_parts_c003.png",
-    "/DLPortraits/portrait_output/100004_16/100004_16_parts_c004.png",
-    "/DLPortraits/portrait_output/100004_16/100004_16_parts_c005.png",
-    "/DLPortraits/portrait_output/100004_16/100004_16_parts_c006.png",
-    "/DLPortraits/portrait_output/100004_16/100004_16_parts_c007.png"
-  ]
+  "partsData": {
+    "faceParts": [
+      "/DLPortraits/portrait_output/100004_16/100004_16_parts_c000.png",
+      "/DLPortraits/portrait_output/100004_16/100004_16_parts_c001.png"
+    ],
+    "mouthParts": [
+      "/DLPortraits/portrait_output/100004_16/100004_16_parts_c002.png",
+      "/DLPortraits/portrait_output/100004_16/100004_16_parts_c003.png",
+      "/DLPortraits/portrait_output/100004_16/100004_16_parts_c004.png",
+      "/DLPortraits/portrait_output/100004_16/100004_16_parts_c005.png",
+      "/DLPortraits/portrait_output/100004_16/100004_16_parts_c006.png",
+      "/DLPortraits/portrait_output/100004_16/100004_16_parts_c007.png"
+    ]
+  }
 }

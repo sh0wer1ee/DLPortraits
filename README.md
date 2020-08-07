@@ -6,7 +6,8 @@ dragalia lost portrait viewer (experimental)
 # Demo
 - [githubio](https://sh0wer1ee.github.io/DLPortraits)
 # Note
-- The face and mouth parts might not be classfied in games, so currently I just put them together.
+- Trying to classify the face and mouth.
+- Some parts combination may seem odd, and some chara have no parts.
 - NOT compatible with mobile devices yet.
 - Copyright is owned by Cygames & Nintendo.
 - https://github.com/sh0wer1ee/DLScripts for assets extraction.

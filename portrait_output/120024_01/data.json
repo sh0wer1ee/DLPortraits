@@ -3,14 +3,12 @@
     "x": 458,
     "y": 346
   },
-  "indexTable": {
-    "0": 0,
-    "1": 0,
-    "2": 0
-  },
-  "fileList": [
-    "/DLPortraits/portrait_output/120024_01/120024_01_parts_c000.png",
-    "/DLPortraits/portrait_output/120024_01/120024_01_parts_c001.png",
-    "/DLPortraits/portrait_output/120024_01/120024_01_parts_c002.png"
-  ]
+  "partsData": {
+    "faceParts": [
+      "/DLPortraits/portrait_output/120024_01/120024_01_parts_c000.png",
+      "/DLPortraits/portrait_output/120024_01/120024_01_parts_c001.png",
+      "/DLPortraits/portrait_output/120024_01/120024_01_parts_c002.png"
+    ],
+    "mouthParts": []
+  }
 }
