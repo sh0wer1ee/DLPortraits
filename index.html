@@ -21,7 +21,7 @@
             width: 100%;
             height: 100%;
             cursor: grab;
-            overflow: hidden;
+            overflow: auto;
         }
         
         #canvas-area {
@@ -275,7 +275,7 @@
 
             const mouseDownHandler = function(e) {
                 canvasDiv.style.cursor = 'grabbing';
-                canvasDiv.style.userSelect = 'none';
+                //canvasDiv.style.userSelect = 'none';
 
                 pos = {
                     left: canvasDiv.scrollLeft,
@@ -296,7 +296,7 @@
             };
             const mouseUpHandler = function() {
                 canvasDiv.style.cursor = 'grab';
-                canvasDiv.style.removeProperty('user-select');
+                //canvasDiv.style.removeProperty('user-select');
                 document.removeEventListener('mousemove', mouseMoveHandler);
                 document.removeEventListener('mouseup', mouseUpHandler);
             };
