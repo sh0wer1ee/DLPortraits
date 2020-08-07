@@ -17,20 +17,27 @@
             height: 100%;
         }
         
+        #canvas-canvas {
+            width: 100%;
+            height: 100%;
+            cursor: grab;
+            overflow: hidden;
+        }
+        
         #canvas-area {
             float: right;
             width: 54%;
-            overflow: auto;
             height: 100%;
+            overflow: hidden;
         }
         
         #face-area {
-            height: 40%;
+            height: 38%;
             overflow: auto;
         }
         
         #mouth-area {
-            height: 40%;
+            height: 38%;
             overflow: auto;
         }
     </style>
@@ -40,6 +47,7 @@
             <span class="inlineBlock">
                 <label for="chara-select">CharaID: </label>
                 <select class = "chara-select" id = "chara-select"></select>
+                <br>
                 <button id="load-btn">Load chara</button>
                 <span id="log-text" style="font-size: 10px; color: teal;"></span>
             </span>
@@ -48,27 +56,29 @@
         <br>
 
         <div class="picker" id="picker">
+            <label for="face-select">choose face parts: </label>
             <div id="face-area" style="border:1px solid #000000;">
-                <label for="face-select">choose face parts: </label>
                 <select class='face-select' id='face-select'></select>
             </div>
             <br>
+            <label for="mouth-select">choose mouth parts: </label>
             <div id="mouth-area" style="border:1px solid #000000;">
-                <label for="mouth-select">choose mouth parts: </label>
                 <select class='mouth-select' id='mouth-select'></select>
             </div>
-
         </div>
 
 
     </div>
     <div id="canvas-area">
-        <div>
+        <div id="canvas-btn">
             <button id="reset-btn">Reset</button>
             <button id="download-btn">Download Image</button>
+            <span id="note-text" style="font-size: 10px;"> Note: Drag to scroll the canvas. </span>
         </div>
         <br>
-        <canvas id="canvas" width="1024" height="1024" style="border:2px solid #000000; text-align:center; margin: auto;"></canvas>
+        <div id="canvas-canvas">
+            <canvas id="canvas" width="1024" height="1024"></canvas>
+        </div>
     </div>
 
     <script>
@@ -135,7 +145,6 @@
                     resetCanvas();
                     faceOptions.selectedIndex = -1;
                     mouthOptions.selectedIndex = -1;
-                    $("select").imagepicker();
                 }
             }
         );
@@ -146,6 +155,7 @@
                 }
             }
         );
+
 
 
 
@@ -252,6 +262,46 @@
                 downloadLink.click();
             });
         }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            canvasDiv = document.getElementById('canvas-canvas');
+
+            let pos = {
+                top: 0,
+                left: 0,
+                x: 0,
+                y: 0
+            };
+
+            const mouseDownHandler = function(e) {
+                canvasDiv.style.cursor = 'grabbing';
+                canvasDiv.style.userSelect = 'none';
+
+                pos = {
+                    left: canvasDiv.scrollLeft,
+                    top: canvasDiv.scrollTop,
+                    x: e.clientX,
+                    y: e.clientY,
+                };
+
+                document.addEventListener('mousemove', mouseMoveHandler);
+                document.addEventListener('mouseup', mouseUpHandler);
+            };
+
+            const mouseMoveHandler = function(e) {
+                const dx = e.clientX - pos.x;
+                const dy = e.clientY - pos.y;
+                canvasDiv.scrollTop = pos.top - dy;
+                canvasDiv.scrollLeft = pos.left - dx;
+            };
+            const mouseUpHandler = function() {
+                canvasDiv.style.cursor = 'grab';
+                canvasDiv.style.removeProperty('user-select');
+                document.removeEventListener('mousemove', mouseMoveHandler);
+                document.removeEventListener('mouseup', mouseUpHandler);
+            };
+            canvasDiv.addEventListener('mousedown', mouseDownHandler);
+        });
     </script>
 </body>
 
