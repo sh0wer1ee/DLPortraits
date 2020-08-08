@@ -115,12 +115,12 @@
                 })
                 .then(response => response.json())
                 .then(json => {
-                    json['fileList'].forEach(function(item, index) {
+                    for (var key in json['fileList']) {
                         var option = document.createElement("option");
-                        option.value = item;
-                        option.text = item;
+                        option.value = key;
+                        option.text = json['fileList'][key];
                         document.getElementById("chara-select").appendChild(option);
-                    });
+                    }
                     $("select.chara-select").imagepicker({
                         hide_select: false,
                         show_label: true,
