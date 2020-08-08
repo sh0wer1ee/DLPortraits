@@ -1,7 +1,7 @@
 <html>
 
 <head>
-    <title>portrait viewer</title>
+    <title>立绘查看器</title>
     <link rel="stylesheet" type="text/css" href="image-picker/image-picker.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="image-picker/image-picker.js" type="text/javascript"></script>
@@ -45,10 +45,10 @@
     <div id="function-area">
         <div>
             <span class="inlineBlock">
-                <label for="chara-select">CharaID: </label>
+                <label for="chara-select">立绘ID: </label>
                 <select class = "chara-select" id = "chara-select"></select>
                 <br>
-                <button id="load-btn">Load chara</button>
+                <button id="load-btn">载入立绘数据</button>
                 <span id="log-text" style="font-size: 10px; color: teal;"></span>
             </span>
         </div>
@@ -56,12 +56,12 @@
         <br>
 
         <div class="picker" id="picker">
-            <label for="face-select">choose face parts: </label>
+            <label for="face-select">请选择面部表情：</label>
             <div id="face-area" style="border:1px solid #000000;">
                 <select class='face-select' id='face-select'></select>
             </div>
             <br>
-            <label for="mouth-select">choose mouth parts: </label>
+            <label for="mouth-select">请选择嘴部表情：</label>
             <div id="mouth-area" style="border:1px solid #000000;">
                 <select class='mouth-select' id='mouth-select'></select>
             </div>
@@ -71,9 +71,9 @@
     </div>
     <div id="canvas-area">
         <div id="canvas-btn">
-            <button id="reset-btn">Reset</button>
-            <button id="download-btn">Download Image</button>
-            <span id="note-text" style="font-size: 10px;"> Note: Drag to scroll the canvas. </span>
+            <button id="reset-btn">恢复默认表情</button>
+            <button id="download-btn">下载图像</button>
+            <span id="note-text" style="font-size: 10px;"> 提示：可以通过拖拽来移动立绘。 </span>
         </div>
         <br>
         <div id="canvas-canvas">
@@ -127,7 +127,7 @@
                     });
                 }).catch(function(error) {
                     console.log(error);
-                    document.getElementById("log-text").innerText = `Error in fileList data json, please check the console.`;
+                    document.getElementById("log-text").innerText = `载入立绘文件表失败，请查看控制台。刷新网页以重新载入。`;
                 });
         }
 
@@ -166,12 +166,12 @@
             // load image
             baseImg.src = `${githubPrefix}${portraitPath}${imgID}/${imgID}_base.png`;
             baseImg.onload = function() {
-                logText.innerText = `chara ${imgID} loaded.`;
+                logText.innerText = `${imgID}已成功载入。`;
                 ctx.drawImage(baseImg, 0, 0);
                 loadJsonData();
             }
             baseImg.onerror = function() {
-                logText.innerText = `Error in loading chara ${imgID}, please check the console.`;
+                logText.innerText = `载入立绘${imgID}图像数据失败，请查看控制台。`;
                 loaded = false;
             }
         }
@@ -194,7 +194,7 @@
                     loadOptions();
                 }).catch(function(error) {
                     console.log(error);
-                    logText.innerText = `Error in loading chara ${imgID} data json, please check the console.`;
+                    logText.innerText = `载入立绘${imgID}数据表失败，请查看控制台。`;
                     loaded = false;
                 });
         }
