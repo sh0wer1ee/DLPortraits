@@ -1,9 +1,11 @@
 <html>
 
 <head>
-    <title>立绘查看器</title>
+    <title>龙约立绘查看/拼豆</title>
     <link rel="stylesheet" type="text/css" href="image-picker/image-picker.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.8/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.8/js/select2.min.js"></script>
     <script src="image-picker/image-picker.js" type="text/javascript"></script>
 </head>
 
@@ -121,10 +123,7 @@
                         option.text = json['fileList'][key];
                         document.getElementById("chara-select").appendChild(option);
                     }
-                    $("select.chara-select").imagepicker({
-                        hide_select: false,
-                        show_label: true,
-                    });
+                    $('select.chara-select').select2();
                 }).catch(function(error) {
                     console.log(error);
                     document.getElementById("log-text").innerText = `载入立绘文件表失败，请查看控制台。刷新网页以重新载入。`;
