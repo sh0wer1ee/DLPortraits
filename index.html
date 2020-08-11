@@ -48,7 +48,9 @@
         <div>
             <span class="inlineBlock">
                 <label for="chara-select">立绘ID: </label>
-                <select class = "chara-select" id = "chara-select"></select>
+                <select class = "chara-select" id = "chara-select">
+                    <option></option>
+                </select>
                 <br>
                 <button id="load-btn">载入立绘数据</button>
                 <span id="log-text" style="font-size: 10px; color: teal;"></span>
@@ -123,7 +125,10 @@
                         option.text = json['fileList'][key];
                         document.getElementById("chara-select").appendChild(option);
                     }
-                    $('select.chara-select').select2();
+                    $('select.chara-select').select2({
+                        placeholder: "输入关键字以查询",
+                        allowClear: true
+                    });
                 }).catch(function(error) {
                     console.log(error);
                     document.getElementById("log-text").innerText = `载入立绘文件表失败，请查看控制台。刷新网页以重新载入。`;
@@ -135,7 +140,8 @@
             function() {
                 let charaSelect = document.getElementById("chara-select");
                 imgID = charaSelect.options[charaSelect.selectedIndex].value
-                loadChara();
+                if (imgID)
+                    loadChara();
             }
         );
         document.getElementById("reset-btn").addEventListener("click",
