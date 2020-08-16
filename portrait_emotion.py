@@ -16,6 +16,14 @@ githubPrefix = 'DLPortraits'
 inputFolder = 'portrait_asset'
 outputFolder = 'portrait_output'
 jsonFolder = 'json'
+specialAlphaID = {
+    '100001_03':[5, 6],
+    '110039_01':[1, 2, 8, 9, 10, 11, 12, 13, 14, 23, 24],
+    '200013_01':[1, 4]
+}
+ignoredMultiPartsAlphaID = {
+    '110040_01':[16, 17, 18, 19, 20, 21, 22, 23, 24, 25]
+}
 #--CONFIG--#
 INPUT = os.path.join(ROOT, inputFolder)
 OUTPUT = os.path.join(ROOT, outputFolder)
@@ -28,7 +36,6 @@ def processAsset(filePath):
     indexTable = {}
     imageData = {}
     dataJson = {}
-    fileList = []
 
     baseName = os.path.basename(filePath)
     am = UnityPy.AssetsManager(filePath)
@@ -62,10 +69,15 @@ def processAsset(filePath):
 def parseMono(mono):
     partsDataTable = {}
     partsTextureIndexTable = {}
-    offsetX = int(mono['partsDataTable'][0]['position']['x'] - mono['partsDataTable'][0]['size']['x'] / 2)
-    offsetY = int(mono['partsDataTable'][0]['position']['y'] - mono['partsDataTable'][0]['size']['y'] / 2)
-    partsDataTable['x'] = offsetX
-    partsDataTable['y'] = offsetY
+    for table in mono['partsDataTable']:
+        index = mono['partsDataTable'].index(table)
+        indexStr = '' if index == 0 else str(index)
+        offsetX = int(table['position']['x'] - table['size']['x'] / 2)
+        offsetY = int(table['position']['y'] - table['size']['y'] / 2)
+        partsDataTable['x%s' % indexStr] = offsetX
+        partsDataTable['y%s' % indexStr] = offsetY
+        
+    
     for index in mono['partsTextureIndexTable']:
         partsTextureIndexTable[index['colorIndex']] = index['alphaIndex']
     return partsDataTable, partsTextureIndexTable
@@ -117,15 +129,16 @@ def classifyFaceMouth(indexTable, baseName):
         filePath = ('/%s/%s/%s/%s_parts_c%s.png')%(githubPrefix, outputFolder, baseName, baseName, str(cidx).zfill(3))   
         if aidx == minID:
             partsData['faceParts'].append(filePath)
+        elif baseName in specialAlphaID and aidx in specialAlphaID[baseName]:
+            partsData['faceParts'].append(filePath)
+        elif baseName in ignoredMultiPartsAlphaID and aidx in ignoredMultiPartsAlphaID[baseName]:
+            pass
         else:
-            if baseName == '100001_03' and (aidx == 5 or aidx == 6):
-                partsData['faceParts'].append(filePath)
-            else:
-                partsData['mouthParts'].append(filePath)
+            partsData['mouthParts'].append(filePath)
     return partsData
 
-def getCharaName(fileList):
-    fileDic = {}
+def getCharaName(fileList, fileListDic):
+    fileDic = fileListDic
     textlabel = {}
     textlabelJson = json.load(open(JSON + '\\TextLabel.json', encoding='utf8'))
     for tid in textlabelJson:
@@ -142,12 +155,30 @@ def getCharaName(fileList):
         
     return fileDic
 
+def getDragonName(fileList, fileListDic):
+    fileDic = fileListDic
+    textlabel = {}
+    textlabelJson = json.load(open(JSON + '\\TextLabel.json', encoding='utf8'))
+    for tid in textlabelJson:
+        textlabel[textlabelJson[tid]['_Id']] = textlabelJson[tid]['_Text']
+    # STORY_UNIT_GROUP_{cid}01
+    for did in fileList:
+        try:
+            fileDic[did] = ('%s %s') % (did, textlabel[('STORY_UNIT_GROUP_%s01') % (did.split('_')[0])])
+        except KeyError:
+            fileDic[did] = '%s ' % did
+        
+    return fileDic
+
 def main():
-    #dirData = {'fileList' : {}}
+    dirData = {'fileList' : {}}
     for root, dirs, files in os.walk(INPUT, topdown=False):
         if files:
-    #        if len(files) > 1:
-    #            dirData['fileList'] = getCharaName(files)
+            if 'emotion.story.chara' in root:
+                dirData['fileList'] = getCharaName(files, dirData['fileList'])
+            elif 'emotion.story.dragon' in root:
+                dirData['fileList'] = getDragonName(files, dirData['fileList'])
+                
             if files == ['100007_01_base_y']:
                 continue
             pbar = tqdm.tqdm(files)
@@ -156,8 +187,8 @@ def main():
                 src = os.path.realpath(os.path.join(root, f))
                 processAsset(src)
 
-    #with open(('%s\\dirData.json') % OUTPUT, 'w', encoding='utf8') as f:
-    #    json.dump(dirData, f, indent=2, ensure_ascii=False)
+    with open(('%s\\dirData.json') % OUTPUT, 'w', encoding='utf8') as f:
+        json.dump(dirData, f, indent=2, ensure_ascii=False)
     
 
     

@@ -42,12 +42,26 @@
             height: 38%;
             overflow: auto;
         }
+        
+        #face-area {
+            border-width: 2px;
+            border-style: solid;
+            color: rgb(182, 182, 182);
+            border-radius: 4px;
+        }
+        
+        #mouth-area {
+            border-width: 2px;
+            border-style: solid;
+            color: rgb(182, 182, 182);
+            border-radius: 4px;
+        }
     </style>
 
     <div id="function-area">
         <div>
             <span class="inlineBlock">
-                <label for="chara-select">立绘ID: </label>
+                <label for="chara-select">立绘ID</label>
                 <select class = "chara-select" id = "chara-select">
                     <option></option>
                 </select>
@@ -61,12 +75,12 @@
 
         <div class="picker" id="picker">
             <label for="face-select">请选择面部表情：</label>
-            <div id="face-area" style="border:1px solid #000000;">
+            <div id="face-area">
                 <select class='face-select' id='face-select'></select>
             </div>
             <br>
             <label for="mouth-select">请选择嘴部表情：</label>
-            <div id="mouth-area" style="border:1px solid #000000;">
+            <div id="mouth-area">
                 <select class='mouth-select' id='mouth-select'></select>
             </div>
         </div>
