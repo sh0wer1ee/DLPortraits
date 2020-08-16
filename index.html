@@ -116,9 +116,9 @@
         var imgGroup = new Array();
         var baseImg = new Image();
         var faceImg = new Image();
-        var faceID = "";
+        var faceID = "0";
         var mouthImg = new Image();
-        var mouthID = "";
+        var mouthID = "0";
         var loaded = false;
         var partsData = [];
         var offset = [];
@@ -164,6 +164,9 @@
                     resetCanvas();
                     faceOptions.selectedIndex = -1;
                     mouthOptions.selectedIndex = -1;
+                    refreshPicker();
+                    faceID = "0";
+                    mouthID = "0";
                 }
             }
         );
@@ -238,6 +241,8 @@
             });
             faceOptions.selectedIndex = -1;
             mouthOptions.selectedIndex = -1;
+            faceID = "0";
+            mouthID = "0";
             loaded = true;
             refreshPicker();
         }
