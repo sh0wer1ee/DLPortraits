@@ -1,0 +1,55 @@
+#function-area {
+    float: left;
+    width: 42%;
+    overflow: auto;
+    height: 100%;
+}
+
+#canvas-canvas {
+    width: 100%;
+    height: 100%;
+    cursor: grab;
+    overflow: auto;
+}
+
+#canvas-area {
+    float: right;
+    width: 58%;
+    height: 100%;
+    overflow: hidden;
+}
+
+#face-area {
+    border-width: 2px;
+    border-style: solid;
+    color: rgb(182, 182, 182);
+    border-radius: 4px;
+    height: 36%;
+    overflow: auto;
+}
+
+#mouth-area {
+    border-width: 2px;
+    border-style: solid;
+    color: rgb(182, 182, 182);
+    border-radius: 4px;
+    height: 36%;
+    overflow: auto;
+}
+
+#canvas-btn {
+    float: left;
+}
+
+#lang-select-area {
+    float: right;
+}
+
+.lang-select {
+    width: 100px;
+}
+
+.image_picker_image {
+    max-width: 96px;
+    max-height: 96px;
+}
