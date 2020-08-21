@@ -83,6 +83,8 @@ def parseMono(mono):
     return partsDataTable, partsTextureIndexTable
 
 def combineYCbCrA(imageData, baseName, cidx = -1, aidx = -1):
+    if cidx == -1 and aidx == -1: # 210038_01
+        return
     imageBase = ''
     if cidx == -1:
         imageBase = ('%s_base') % baseName
@@ -122,11 +124,13 @@ def classifyFaceMouth(indexTable, baseName):
     }
     sortedList = sorted(indexTable.items(), key = lambda kv:(kv[1], kv[0]))
     try: # some indexTables are empty
-        minID = sortedList[0][1]
+        minID = sortedList[0][1] if sortedList[0][1] >= 0 else 0
     except IndexError:
         return partsData
     for cidx, aidx in sortedList:
-        filePath = ('/%s/%s/%s/%s_parts_c%s.png')%(githubPrefix, outputFolder, baseName, baseName, str(cidx).zfill(3))   
+        if cidx < 0: # 210038_01
+            continue
+        filePath = ('/%s/%s/%s/%s_parts_c%s.png')%(githubPrefix, outputFolder, baseName, baseName, str(cidx).zfill(3)) 
         if aidx == minID:
             partsData['faceParts'].append(filePath)
         elif baseName in specialAlphaID and aidx in specialAlphaID[baseName]:

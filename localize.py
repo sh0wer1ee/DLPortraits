@@ -1,6 +1,7 @@
 import json
 
 dirDataJson = json.load(open('DLPortraits/portrait_output/dirData.json', encoding='utf8'))
+#enDirDataJson = json.load(open('dirDataEN.json', encoding='utf8'))
 
 textlabelJsonJP = json.load(open('json/JPTextLabel.json', encoding='utf8'))
 textlabelJsonZHCN = json.load(open('json/ZHCNTextLabel.json', encoding='utf8'))
@@ -58,7 +59,7 @@ for key in dirDataJson['fileList']:
     localDic = {}
     localDic['zh_cn'] = dirDataJson['fileList'][key]
     localDic['zh_tw'] = '%s %s' % (key, getName(key, 'zh_tw'))
-    localDic['en_us'] = '%s %s' % (key, getName(key, 'en_us'))
+    localDic['en_us'] = '%s %s' % (key, getName(key, 'en_us')) # enDirDataJson['fileList'][key]
     localDic['jp'] = '%s %s' % (key, getName(key, 'jp'))
     localizedDirDataJson['fileList'][key] = localDic
 

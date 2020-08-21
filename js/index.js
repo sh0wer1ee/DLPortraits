@@ -30,7 +30,7 @@ var localizationData = {
     'search-placeholder': {
         zh_cn: '输入关键字以查询',
         zh_tw: '關鍵詞檢索',
-        en_us: 'Search Keyword',
+        en_us: 'Enter keywords to query',
         jp: 'キーワード検索'
     },
     'chara-select': {
@@ -42,49 +42,49 @@ var localizationData = {
     'load-btn': {
         zh_cn: '载入立绘数据',
         zh_tw: '載入立繪數據',
-        en_us: 'Load Data',
+        en_us: 'Load Portrait',
         jp: '読み込む'
     },
     'face-select': {
         zh_cn: '请选择面部差分：',
         zh_tw: '請選擇面部差分：',
-        en_us: 'Choose Face Part:',
+        en_us: 'Select facial expression：',
         jp: '目の差分を選ぶ'
     },
     'mouth-select': {
         zh_cn: '请选择嘴部差分：',
         zh_tw: '請選擇嘴部差分：',
-        en_us: 'Choose Mouth Part:',
+        en_us: 'Select mouth expression：',
         jp: '口の差分を選ぶ'
     },
     'reset-btn': {
         zh_cn: '恢复默认表情',
         zh_tw: '恢復默認表情',
-        en_us: 'Reset',
+        en_us: 'Reset to Default',
         jp: 'リセット'
     },
     'download-btn': {
         zh_cn: '下载图像',
         zh_tw: '下載圖像',
-        en_us: 'Download',
+        en_us: 'Download Image',
         jp: 'ダウンロード'
     },
     'note-text': {
         zh_cn: '提示：拖拽画布以移动立绘。 ',
         zh_tw: '提示：拖拽畫布以移動立繪。',
-        en_us: 'Hint: Drag the convas to scroll.',
+        en_us: 'Tip: You can move the drawing by dragging.',
         jp: 'ヒント: ドラッグでキャンバスを移動する'
     },
     'title': {
         zh_cn: '龙约立绘查看/拼豆',
         zh_tw: '龍絆立繪查看/編輯',
-        en_us: 'Dragalia Lost Portrait Viewer',
+        en_us: 'Dragalia Lost Portraits Viewer',
         jp: 'ドラガリ立ち絵ビューアー'
     },
     'filelist-load-error-log': {
         zh_cn: '载入立绘文件表失败，请查看控制台。刷新网页以重新载入。',
         zh_tw: '載入立繪文件表失敗，請查看控制台。刷新頁面以重新載入。',
-        en_us: 'Error loading filelist.json, please check the console or refresh page.',
+        en_us: 'Error loading filelist.json, please check the console or refresh the page.',
         jp: 'ロードに失敗しました、コンソールを確認してください。このページを再読込します。'
     },
     'p-image-load-error-log': {
