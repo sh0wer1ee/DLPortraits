@@ -1,6 +1,6 @@
 #function-area {
     float: left;
-    width: 42%;
+    width: 34%;
     overflow: auto;
     height: 100%;
 }
@@ -14,7 +14,7 @@
 
 #canvas-area {
     float: right;
-    width: 58%;
+    width: 66%;
     height: 100%;
     overflow: hidden;
 }
