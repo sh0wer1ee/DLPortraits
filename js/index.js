@@ -194,8 +194,10 @@ document.getElementById("reset-btn").addEventListener("click",
             faceOptions.selectedIndex = -1;
             mouthOptions.selectedIndex = -1;
             refreshPicker();
-            faceID = "0";
-            mouthID = "0";
+            faceID = "-1";
+            mouthID = "-1";
+            faceImg.src = "";
+            mouthImg.src = "";
         }
     }
 );
@@ -305,6 +307,9 @@ function refreshPicker() {
 
 function mergeImage() {
     resetCanvas();
+    if (faceID != "-1") {
+        ctx.clearRect(offset[0], offset[1], faceImg.width, faceImg.height);
+    }
     ctx.drawImage(faceImg, offset[0], offset[1]);
     ctx.drawImage(mouthImg, offset[0], offset[1]);
 }
