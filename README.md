@@ -7,6 +7,7 @@ dragalia lost portrait viewer (experimental)
 - [select2](https://github.com/select2/select2)
 # Demo
 - [github.io](https://sh0wer1ee.github.io/DLPortraits)
+- [netlify](https://dlportraits.netlify.app)
 # Note
 - Some parts combination may seem odd, and some chara have no parts.
 - NOT friendly with mobile devices yet.
