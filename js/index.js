@@ -12,9 +12,7 @@ var mouthOptions = document.getElementById("mouth-select");
 var downloadBtn = document.getElementById("download-btn");
 var ctx = canvas.getContext("2d");
 
-var githubPrefix = "/DLPortraits";
-//var githubPrefix = ""; // Debug use
-var portraitPath = "/portrait_output/";
+var portraitPath = "./portrait_output/";
 var imgID = "";
 var imgGroup = new Array();
 var baseImg = new Image();
@@ -151,7 +149,7 @@ function changeLang() {
 }
 
 function buildCharaOptions() {
-    fetch(`${githubPrefix}${portraitPath}localizedDirData.json`)
+    fetch(`${portraitPath}localizedDirData.json`)
         .then(function(response) {
             if (!response.ok) {
                 throw Error(response.statusText);
@@ -227,7 +225,7 @@ function loadChara() {
     faceImg.src = "";
     mouthImg.src = "";
     // load image
-    baseImg.src = `${githubPrefix}${portraitPath}${imgID}/${imgID}_base.png`;
+    baseImg.src = `${portraitPath}${imgID}/${imgID}_base.png`;
     baseImg.onload = function() {
         logText.innerText = localizationData['load-success-log'][language];
         ctx.drawImage(baseImg, 0, 0);
@@ -241,7 +239,7 @@ function loadChara() {
 
 // fetch data json
 function loadJsonData() {
-    fetch(`${githubPrefix}${portraitPath}${imgID}/data.json`)
+    fetch(`${portraitPath}${imgID}/data.json`)
         .then(function(response) {
             if (!response.ok) {
                 throw Error(response.statusText);
