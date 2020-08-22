@@ -5,12 +5,12 @@
   },
   "partsData": {
     "faceParts": [
-      "/DLPortraits/portrait_output/210040_01/210040_01_parts_c000.png"
-    ],
-    "mouthParts": [
+      "/DLPortraits/portrait_output/210040_01/210040_01_parts_c000.png",
       "/DLPortraits/portrait_output/210040_01/210040_01_parts_c001.png",
       "/DLPortraits/portrait_output/210040_01/210040_01_parts_c003.png",
-      "/DLPortraits/portrait_output/210040_01/210040_01_parts_c002.png",
+      "/DLPortraits/portrait_output/210040_01/210040_01_parts_c002.png"
+    ],
+    "mouthParts": [
       "/DLPortraits/portrait_output/210040_01/210040_01_parts_c004.png",
       "/DLPortraits/portrait_output/210040_01/210040_01_parts_c005.png",
       "/DLPortraits/portrait_output/210040_01/210040_01_parts_c008.png",

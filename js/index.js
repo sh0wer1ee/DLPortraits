@@ -206,6 +206,15 @@ document.getElementById("download-btn").addEventListener("click",
         }
     }
 );
+/*
+document.getElementById("invert-btn").addEventListener("click",
+    function() {
+        if (loaded) {
+            invertColors();
+        }
+    }
+);
+*/
 
 
 
@@ -303,6 +312,28 @@ function mergeImage() {
 function resetCanvas() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.drawImage(baseImg, 0, 0);
+}
+
+function invertColors() {
+    var imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+    var dataArr = imageData.data;
+
+    for (var i = 0; i < dataArr.length; i += 4) {
+        var r = dataArr[i];
+        var g = dataArr[i + 1];
+        var b = dataArr[i + 2];
+        var a = dataArr[i + 3];
+
+        var invertedRed = 255 - r;
+        var invertedGreen = 255 - g;
+        var invertedBlue = 255 - b;
+
+        dataArr[i] = invertedRed;
+        dataArr[i + 1] = invertedGreen;
+        dataArr[i + 2] = invertedBlue;
+    }
+
+    ctx.putImageData(imageData, 0, 0);
 }
 
 function downloadCanvasAsImage(filename) {

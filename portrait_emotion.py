@@ -1,6 +1,6 @@
 '''
     Dump the portrait base and parts from portrait assets.
-    You need to download them with manifest_diff_download.py.
+    You need to download them with manifest_diff_download.py from DLScripts.
 '''
 
 import os
@@ -18,8 +18,24 @@ outputFolder = 'portrait_output'
 jsonFolder = 'json'
 specialAlphaID = {
     '100001_03':[5, 6],
+    '100018_02':[2],
+    '100034_01':[1, 3, 4, 5, 6],
+    '110030_01':[1, 6, 7, 8, 17],
+    '110035_01':[1, 7],
     '110039_01':[1, 2, 8, 9, 10, 11, 12, 13, 14, 23, 24],
-    '200013_01':[1, 4]
+    '110281_01':[2],
+    '110311_01':[2, 3],
+    '110358_02':[2],
+    '120014_01':[5, 6, 13, 14],
+    '120017_01':[7, 8],
+    '120021_01':[2, 3],
+    '120028_01':[2],
+    '120032_01':[2, 3],
+    '120033_01':[9],
+    '120091_01':[5],
+    '120110_01':[7, 8],
+    '200013_01':[1, 4],
+    '210040_01':[1, 2]
 }
 ignoredMultiPartsAlphaID = {
     '110040_01':[16, 17, 18, 19, 20, 21, 22, 23, 24, 25]
@@ -144,7 +160,7 @@ def classifyFaceMouth(indexTable, baseName):
 def getCharaName(fileList, fileListDic):
     fileDic = fileListDic
     textlabel = {}
-    textlabelJson = json.load(open(JSON + '\\TextLabel.json', encoding='utf8'))
+    textlabelJson = json.load(open('../DLScripts/json/TextLabel.json', encoding='utf8'))
     for tid in textlabelJson:
         textlabel[textlabelJson[tid]['_Id']] = textlabelJson[tid]['_Text']
     # STORY_UNIT_GROUP_{cid}00
@@ -162,7 +178,7 @@ def getCharaName(fileList, fileListDic):
 def getDragonName(fileList, fileListDic):
     fileDic = fileListDic
     textlabel = {}
-    textlabelJson = json.load(open(JSON + '\\TextLabel.json', encoding='utf8'))
+    textlabelJson = json.load(open('../DLScripts/json/TextLabel.json', encoding='utf8'))
     for tid in textlabelJson:
         textlabel[textlabelJson[tid]['_Id']] = textlabelJson[tid]['_Text']
     # STORY_UNIT_GROUP_{cid}01
@@ -191,8 +207,8 @@ def main():
                 src = os.path.realpath(os.path.join(root, f))
                 processAsset(src)
 
-    with open(('%s\\dirData.json') % OUTPUT, 'w', encoding='utf8') as f:
-        json.dump(dirData, f, indent=2, ensure_ascii=False)
+    # with open(('%s\\dirData.json') % OUTPUT, 'w', encoding='utf8') as f:
+    #     json.dump(dirData, f, indent=2, ensure_ascii=False)
     
 
     
