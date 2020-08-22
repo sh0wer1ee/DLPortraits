@@ -12,7 +12,6 @@ from PIL import Image
 ROOT = os.path.dirname(os.path.realpath(__file__))
 #--CONFIG--#
 playerName = '尤蒂尔'
-githubPrefix = 'DLPortraits'
 inputFolder = 'portrait_asset'
 outputFolder = 'portrait_output'
 jsonFolder = 'json'
@@ -140,13 +139,13 @@ def classifyFaceMouth(indexTable, baseName):
     }
     sortedList = sorted(indexTable.items(), key = lambda kv:(kv[1], kv[0]))
     try: # some indexTables are empty
-        minID = sortedList[0][1] if sortedList[0][1] >= 0 else 0
+        minID = sortedList[0][1] if (sortedList[0][1] >= 0 or sortedList[0][1] == -2) else 0
     except IndexError:
         return partsData
     for cidx, aidx in sortedList:
         if cidx < 0: # 210038_01
             continue
-        filePath = ('/%s/%s/%s/%s_parts_c%s.png')%(githubPrefix, outputFolder, baseName, baseName, str(cidx).zfill(3)) 
+        filePath = ('./%s/%s/%s_parts_c%s.png')%(outputFolder, baseName, baseName, str(cidx).zfill(3)) 
         if aidx == minID:
             partsData['faceParts'].append(filePath)
         elif baseName in specialAlphaID and aidx in specialAlphaID[baseName]:

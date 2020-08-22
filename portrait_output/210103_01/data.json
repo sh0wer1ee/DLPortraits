@@ -5,8 +5,8 @@
   },
   "partsData": {
     "faceParts": [
-      "/DLPortraits/portrait_output/210103_01/210103_01_parts_c000.png",
-      "/DLPortraits/portrait_output/210103_01/210103_01_parts_c001.png"
+      "./portrait_output/210103_01/210103_01_parts_c000.png",
+      "./portrait_output/210103_01/210103_01_parts_c001.png"
     ],
     "mouthParts": []
   }
