@@ -32,10 +32,10 @@ var localizationData = {
         jp: 'キーワード検索'
     },
     'chara-select': {
-        zh_cn: '立绘ID',
-        zh_tw: '立繪ID',
-        en_us: 'Portrait ID',
-        jp: '立ち絵ID'
+        zh_cn: '请选择立绘',
+        zh_tw: '請選擇立繪',
+        en_us: 'Select Portrait',
+        jp: '立ち絵を選ぶ'
     },
     'load-btn': {
         zh_cn: '载入立绘数据',
@@ -79,6 +79,12 @@ var localizationData = {
         en_us: 'Dragalia Lost Portraits Viewer',
         jp: 'ドラガリ立ち絵ビューアー'
     },
+    'loading-log': {
+        zh_cn: '载入数据中...',
+        zh_tw: '載入數據中...',
+        en_us: 'Now loading...',
+        jp: 'ロード中...'
+    },
     'filelist-load-error-log': {
         zh_cn: '载入立绘文件表失败，请查看控制台。刷新网页以重新载入。',
         zh_tw: '載入立繪文件表失敗，請查看控制台。刷新頁面以重新載入。',
@@ -112,6 +118,7 @@ $(document).ready(function() {
     $('select.lang-select').select2();
     $('select.lang-select').val(language).trigger('change');
     changeLang();
+    fetchLatestCommitTime();
 });
 
 function checkLang(userLang) {
@@ -176,6 +183,24 @@ function buildCharaOptions() {
         });
 }
 
+function fetchLatestCommitTime() {
+    fetch('https://api.github.com/repos/sh0wer1ee/DLPortraits/branches/master')
+        .then(function(response) {
+            if (!response.ok) {
+                throw Error(response.statusText);
+            }
+            return response;
+        })
+        .then(response => response.json())
+        .then(json => {
+            latestTime = json.commit.commit.author.date
+            document.getElementById("commit-url").href = json.commit.html_url;
+            document.getElementById("update-time").innerText = `Last update: ${latestTime}`;
+        }).catch(function(error) {
+            console.log(error);
+            document.getElementById("update-time").innerText = `Last update: N/A`;
+        });
+}
 
 document.getElementById("load-btn").addEventListener("click",
     function() {
@@ -224,6 +249,7 @@ function loadChara() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     faceImg.src = "";
     mouthImg.src = "";
+    logText.innerText = localizationData['loading-log'][language];
     // load image
     baseImg.src = `${portraitPath}${imgID}/${imgID}_base.png`;
     baseImg.onload = function() {

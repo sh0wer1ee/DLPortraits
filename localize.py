@@ -1,8 +1,5 @@
 import json
 
-dirDataJson = json.load(open('DLPortraits/portrait_output/dirData.json', encoding='utf8'))
-#enDirDataJson = json.load(open('dirDataEN.json', encoding='utf8'))
-
 textlabelJsonJP = json.load(open('json/JPTextLabel.json', encoding='utf8'))
 textlabelJsonZHCN = json.load(open('json/ZHCNTextLabel.json', encoding='utf8'))
 textlabelJsonZHTW = json.load(open('json/ZHTWTextLabel.json', encoding='utf8'))
@@ -20,6 +17,7 @@ for tid in textlabelJsonZHTW:
 for tid in textlabelJsonENUS:
     textlabelENUS[textlabelJsonENUS[tid]['_Id']] = textlabelJsonENUS[tid]['_Text']
 
+regions = ['jp', 'zh_cn', 'zh_tw', 'en_us']
 
 def getName(pid, locale):
     textlabel = {}
@@ -53,18 +51,27 @@ def getName(pid, locale):
         except KeyError:
             return ''
 
+def getNameAllRegion(id):
+    for r in regions:
+        print('%s: %s' % (r, getName(id, r)))
 
-localizedDirDataJson = {"fileList": {}}
-for key in dirDataJson['fileList']:
-    localDic = {}
-    localDic['zh_cn'] = dirDataJson['fileList'][key]
-    localDic['zh_tw'] = '%s %s' % (key, getName(key, 'zh_tw'))
-    localDic['en_us'] = '%s %s' % (key, getName(key, 'en_us')) # enDirDataJson['fileList'][key]
-    localDic['jp'] = '%s %s' % (key, getName(key, 'jp'))
-    localizedDirDataJson['fileList'][key] = localDic
+def generateLocalized():
+    dirDataJson = json.load(open('DLPortraits/portrait_output/dirData.json', encoding='utf8'))
+    #enDirDataJson = json.load(open('dirDataEN.json', encoding='utf8'))
+    localizedDirDataJson = {"fileList": {}}
+    for key in dirDataJson['fileList']:
+        localDic = {}
+        localDic['zh_cn'] = dirDataJson['fileList'][key]
+        localDic['zh_tw'] = '%s %s' % (key, getName(key, 'zh_tw'))
+        localDic['en_us'] = '%s %s' % (key, getName(key, 'en_us')) # enDirDataJson['fileList'][key]
+        localDic['jp'] = '%s %s' % (key, getName(key, 'jp'))
+        localizedDirDataJson['fileList'][key] = localDic
+    with open('localizedDirData.json', 'w', encoding='utf8') as f:
+        json.dump(localizedDirDataJson, f, indent=2, ensure_ascii=False)
 
-with open('localizedDirData.json', 'w', encoding='utf8') as f:
-    json.dump(localizedDirDataJson, f, indent=2, ensure_ascii=False)
+def main():
+    getNameAllRegion('210132')
 
-
+if __name__ == '__main__':
+    main()
 
