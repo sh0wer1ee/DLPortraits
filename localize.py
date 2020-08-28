@@ -1,4 +1,5 @@
 import json
+import os
 
 textlabelJsonJP = json.load(open('json/JPTextLabel.json', encoding='utf8'))
 textlabelJsonZHCN = json.load(open('json/ZHCNTextLabel.json', encoding='utf8'))
@@ -56,7 +57,7 @@ def getNameAllRegion(id):
         print('%s: %s' % (r, getName(id, r)))
 
 def generateLocalized():
-    dirDataJson = json.load(open('DLPortraits/portrait_output/dirData.json', encoding='utf8'))
+    dirDataJson = json.load(open('portrait_output/dirData.json', encoding='utf8'))
     #enDirDataJson = json.load(open('dirDataEN.json', encoding='utf8'))
     localizedDirDataJson = {"fileList": {}}
     for key in dirDataJson['fileList']:
@@ -69,8 +70,28 @@ def generateLocalized():
     with open('localizedDirData.json', 'w', encoding='utf8') as f:
         json.dump(localizedDirDataJson, f, indent=2, ensure_ascii=False)
 
+def appendLocalizedJson():
+    # Save my life
+    localizedDirDataJson = json.load(open('portrait_output/localizedDirData.json', encoding='utf8'))
+
+    for root, dirs, files in os.walk('portrait_asset', topdown=False):
+        if files:
+            for f in files:
+                if f not in localizedDirDataJson:
+                    print(f)
+                    localDic = {}
+                    localDic['zh_cn'] = '%s %s' % (f, getName(f, 'zh_cn'))
+                    localDic['zh_tw'] = '%s %s' % (f, getName(f, 'zh_tw'))
+                    localDic['en_us'] = '%s %s' % (f, getName(f, 'en_us')) 
+                    localDic['jp'] = '%s %s' % (f, getName(f, 'jp'))
+                    localizedDirDataJson['fileList'][f] = localDic
+    sortedDic = dict(sorted(localizedDirDataJson.items()))
+
+    with open('localizedDirData.json', 'w', encoding='utf8') as f:
+        json.dump(sortedDic, f, indent=2, ensure_ascii=False)
+
 def main():
-    getNameAllRegion('210132')
+    appendLocalizedJson()
 
 if __name__ == '__main__':
     main()

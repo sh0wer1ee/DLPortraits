@@ -76,7 +76,7 @@ def processAsset(filePath):
 
     if baseName == '100007_01':  
         imageData = loadNhaam(imageData)
-      
+    
     combineYCbCrA(imageData, baseName)
     for index in indexTable:
         combineYCbCrA(imageData, baseName, index, indexTable[index]) 
@@ -97,17 +97,17 @@ def parseMono(mono):
         partsTextureIndexTable[index['colorIndex']] = index['alphaIndex']
     return partsDataTable, partsTextureIndexTable
 
-def combineYCbCrA(imageData, baseName, cidx = -1, aidx = -1):
+def combineYCbCrA(imageData, baseName, cidx = -9, aidx = -9):
     if cidx == -1 and aidx == -1: # 210038_01
         return
     imageBase = ''
-    if cidx == -1:
+    if cidx == -9:
         imageBase = ('%s_base') % baseName
     else:
         imageBase = ('%s_parts_c%s') % (baseName, str(cidx).zfill(3))
     
     try:
-        alpha = imageData['%s_alpha' % imageBase].convert('L') if aidx == -1 else imageData[('%s_parts_a%s_alpha') % (baseName, str(aidx).zfill(3))].convert('L')
+        alpha = imageData['%s_alpha' % imageBase].convert('L') if aidx == -9 else imageData[('%s_parts_a%s_alpha') % (baseName, str(aidx).zfill(3))].convert('L')
     except KeyError:
         pass # ¯\_(ツ)_/¯
 
@@ -118,7 +118,7 @@ def combineYCbCrA(imageData, baseName, cidx = -1, aidx = -1):
         imageData['%s_Cb' % imageBase].convert('L').resize(Y.size, Image.ANTIALIAS),
         imageData['%s_Cr' % imageBase].convert('L').resize(Y.size, Image.ANTIALIAS)
     )).convert('RGBA')
-    if aidx >= -1:
+    if aidx >= 0 or aidx == -9:
         mergedImg.putalpha(alpha) 
     mergedImg.save(('%s\\%s\\%s.png') % (OUTPUT, baseName, imageBase))
 
