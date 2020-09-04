@@ -1,0 +1,21 @@
+{
+    "offset": {
+        "x": 134,
+        "y": 244
+    },
+    "partsData": {
+        "faceParts": [
+            "./portrait_output/100003_00/100003_parts_c000.png",
+            "./portrait_output/100003_00/100003_parts_c001.png"
+        ],
+        "mouthParts": [
+            "./portrait_output/100003_00/100003_parts_c002.png",
+            "./portrait_output/100003_00/100003_parts_c003.png",
+            "./portrait_output/100003_00/100003_parts_c004.png",
+            "./portrait_output/100003_00/100003_parts_c005.png",
+            "./portrait_output/100003_00/100003_parts_c006.png",
+            "./portrait_output/100003_00/100003_parts_c007.png",
+            "./portrait_output/100003_00/100003_parts_c008.png"
+        ]
+    }
+}

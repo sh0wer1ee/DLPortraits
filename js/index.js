@@ -331,7 +331,7 @@ function refreshPicker() {
 
 function mergeImage() {
     resetCanvas();
-    if (faceID != "-1") {
+    if (faceID != "-1" && !(imgID.includes('_00'))) {
         ctx.clearRect(offset[0], offset[1], faceImg.width, faceImg.height);
     }
     ctx.drawImage(faceImg, offset[0], offset[1]);
