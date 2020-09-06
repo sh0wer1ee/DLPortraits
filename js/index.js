@@ -1,4 +1,3 @@
-$("select").imagepicker();
 $('select.lang-select').on('select2:select', function(e) {
     let langSelect = document.getElementById("lang-select");
     language = langSelect.options[langSelect.selectedIndex].value
@@ -108,9 +107,40 @@ var localizationData = {
         zh_tw: '已成功載入。',
         en_us: 'Successfully loaded.',
         jp: 'ロードに成功しました。'
+    },
+    'close-modal': {
+        zh_cn: '关闭',
+        zh_tw: '關閉',
+        en_us: 'Close',
+        jp: '閉じる'
+    },
+    'emotion-modal': {
+        zh_cn: '立绘差分',
+        zh_tw: '立繪差分',
+        en_us: 'Emotions',
+        jp: '立ち絵差分'
+    },
+    'emotionModalLabel': {
+        zh_cn: '请选择立绘差分',
+        zh_tw: '請選擇立繪差分',
+        en_us: 'Select emotion',
+        jp: '立ち絵差分を選ぶ'
+    },
+    'menu-toggle': {
+        zh_cn: '选项菜单',
+        zh_tw: '選項菜單',
+        en_us: 'Option menu',
+        jp: 'オプションメニュー'
+    },
+    'sidebar-heading': {
+        zh_cn: '选项',
+        zh_tw: '選項',
+        en_us: 'Options',
+        jp: 'オプション'
     }
-
 }
+
+
 
 $(document).ready(function() {
     var userLang = navigator.language || navigator.userLanguage;
@@ -118,7 +148,7 @@ $(document).ready(function() {
     $('select.lang-select').select2();
     $('select.lang-select').val(language).trigger('change');
     changeLang();
-    fetchLatestCommitTime();
+    //fetchLatestCommitTime();
 });
 
 function checkLang(userLang) {
@@ -146,13 +176,18 @@ function changeLang() {
     buildCharaOptions();
     document.getElementById("log-text").innerText = ''; // Clear log
     document.getElementById("title").innerText = localizationData['title'][language];
-    document.getElementById("label-chara-select").innerText = localizationData['chara-select'][language];
+    //document.getElementById("label-chara-select").innerText = localizationData['chara-select'][language];
     document.getElementById("load-btn").innerText = localizationData['load-btn'][language];
     document.getElementById("label-face-select").innerText = localizationData['face-select'][language];
     document.getElementById("label-mouth-select").innerText = localizationData['mouth-select'][language];
     document.getElementById("reset-btn").innerText = localizationData['reset-btn'][language];
     document.getElementById("download-btn").innerText = localizationData['download-btn'][language];
-    document.getElementById("note-text").innerText = localizationData['note-text'][language];
+    //document.getElementById("note-text").innerText = localizationData['note-text'][language];
+    document.getElementById("close-modal").innerText = localizationData['close-modal'][language];
+    document.getElementById("emotion-modal").innerText = localizationData['emotion-modal'][language];
+    document.getElementById("emotionModalLabel").innerText = localizationData['emotionModalLabel'][language];
+    document.getElementById("menu-toggle").innerText = localizationData['menu-toggle'][language];
+    document.getElementById("sidebar-heading").innerText = localizationData['sidebar-heading'][language];
 }
 
 function buildCharaOptions() {
@@ -374,7 +409,7 @@ function downloadCanvasAsImage(filename) {
         downloadLink.click();
     });
 }
-
+/*
 document.addEventListener('DOMContentLoaded', function() {
     canvasDiv = document.getElementById('canvas-canvas');
 
@@ -414,3 +449,4 @@ document.addEventListener('DOMContentLoaded', function() {
     };
     canvasDiv.addEventListener('mousedown', mouseDownHandler);
 });
+*/

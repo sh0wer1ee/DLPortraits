@@ -1,67 +1,127 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
     <link rel="icon" href="./icon/favicon.png" type="image/png" sizes="128x128">
     <title id="title">龙约立绘查看/拼豆</title>
+
+    <!-- Custom styles for this template -->
+    <link rel="stylesheet" type="text/css" href="./vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="./css/simple-sidebar.css">
     <link rel="stylesheet" type="text/css" href="./image-picker/image-picker.css">
     <link rel="stylesheet" type="text/css" href="./css/index.css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.8/css/select2.min.css" />
+
+    <!-- Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.8/css/select2.min.css" rel="stylesheet" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.8/js/select2.min.js"></script>
-    <script src="./image-picker/image-picker.js" type="text/javascript"></script>
+    <script src="./image-picker/image-picker.js"></script>
+    <script src="./vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 </head>
 
 <body>
-    <div id="function-area">
-        <div>
-            <span class="inlineBlock">
-                <label id= "label-chara-select" for="chara-select">立绘ID</label>
-                <select class = "chara-select" id = "chara-select">
+
+    <div class="d-flex" id="wrapper">
+
+        <!-- Sidebar -->
+        <div class="bg-light border-right" id="sidebar-wrapper">
+            <div class="sidebar-heading" id="sidebar-heading">选项</div>
+            <div class="dropdown-divider"></div>
+            <div class="option-group" id="option-group">
+                <select class="chara-select" id="chara-select">
                     <option></option>
                 </select>
-                <br>
-                <button id="load-btn">载入立绘数据</button>
-                <span id="log-text" style="font-size: 10px; color: teal;"></span>
-            </span>
-        </div>
-        <br>
-        <div class="picker" id="picker">
-            <label id='label-face-select' for="face-select">请选择面部表情：</label>
-            <div id="face-area">
-                <select class='face-select' id='face-select'></select>
+                <span id="log-text" style="font-size: 10px; color: teal;"> </span>
+                <div class="dropdown-divider"></div>
+                <button class="btn btn-primary text-center" id="load-btn">载入立绘数据</button>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#emotionModal" id="emotion-modal"> 
+                    表情差分
+                </button>
+                <div class="dropdown-divider"></div>
+                <button class="btn btn-primary text-center" id="reset-btn">恢复默认表情</button>
+                <button class="btn btn-primary text-center" id="download-btn">下载图像</button>
             </div>
-            <br>
-            <label id='label-mouth-select' for="mouth-select">请选择嘴部表情：</label>
-            <div id="mouth-area">
-                <select class='mouth-select' id='mouth-select'></select>
+        </div>
+        <!-- /#sidebar-wrapper -->
+
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+                <button class="btn btn-primary" id="menu-toggle">选项菜单</button>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="https://github.com/sh0wer1ee/DLPortraits">GitHub</a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="https://github.com/sh0wer1ee/DLPortraits/blob/master/README.md">About</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <select class="lang-select" id="lang-select">
+                                <option value="zh_cn">简体中文</option>
+                                <option value="zh_tw">繁體中文</option>
+                                <option value="en_us">English</option>
+                                <option value="jp">日本語</option>
+                            </select>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+
+            <div class="container-fluid">
+                <canvas id="canvas" width="1024" height="1024" style="border: 1px solid black;"></canvas>
+            </div>
+        </div>
+        <!-- /#page-content-wrapper -->
+
+        <!-- Modal -->
+        <div class="modal fade" id="emotionModal" tabindex="-1" role="dialog" aria-labelledby="emotionModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="emotionModalLabel">请选择表情差分</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="picker" id="picker">
+                            <label id='label-face-select' for="face-select">请选择面部表情：</label>
+                            <div id="face-area">
+                                <select class='face-select' id='face-select'></select>
+                            </div>
+                            <br>
+                            <label id='label-mouth-select' for="mouth-select">请选择嘴部表情：</label>
+                            <div id="mouth-area">
+                                <select class='mouth-select' id='mouth-select'></select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal" id="close-modal">关闭</button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
+    <!-- /#wrapper -->
 
-    <div id="canvas-area">
-        <div id="canvas-btn">
-            <button id="reset-btn">恢复默认表情</button>
-            <button id="download-btn">下载图像</button>
-            <span id="note-text" style="font-size: 10px;"> 提示：可以通过拖拽来移动立绘。 </span>
-        </div>
-        <div id="lang-select-area">
-            <a id="commit-url" href="https://github.com/sh0wer1ee/DLPortraits/commits/master">
-                <span id="update-time" style="font-size: 10px; text-decoration: underline;"> Last update: N/A  </span>
-            </a>
-            <select class="lang-select" id="lang-select">
-                <option value="zh_cn">简体中文</option>
-                <option value="zh_tw">繁體中文</option>
-                <option value="en_us">English</option>
-                <option value="jp">日本語</option>
-            </select>
-        </div>
-        <br><br>
-        <div id="canvas-canvas">
-            <canvas id="canvas" width="1024" height="1024"></canvas>
-        </div>
-    </div>
-
-    <script src="./js/index.js" type="text/javascript"></script>
+    <!-- Menu Toggle Script -->
+    <script>
+        $("#menu-toggle").click(function(e) {
+            e.preventDefault();
+            $("#wrapper").toggleClass("toggled");
+        });
+    </script>
+    <script src="./js/main.js" type="text/javascript"></script>
 
 </body>
 
