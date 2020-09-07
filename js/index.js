@@ -23,6 +23,7 @@ var loaded = false;
 var partsData = [];
 var offset = [];
 var language = "en_us";
+var invert = false;
 var localizationData = {
     'search-placeholder': {
         zh_cn: '输入关键字以查询',
@@ -53,6 +54,12 @@ var localizationData = {
         zh_tw: '請選擇嘴部差分：',
         en_us: 'Select mouth expression：',
         jp: '口の差分を選ぶ'
+    },
+    'invert-btn': {
+        zh_cn: '负片效果',
+        zh_tw: '負片效果',
+        en_us: 'Negative effect',
+        jp: 'ネガ'
     },
     'reset-btn': {
         zh_cn: '恢复默认表情',
@@ -180,6 +187,7 @@ function changeLang() {
     document.getElementById("load-btn").innerText = localizationData['load-btn'][language];
     document.getElementById("label-face-select").innerText = localizationData['face-select'][language];
     document.getElementById("label-mouth-select").innerText = localizationData['mouth-select'][language];
+    document.getElementById("invert-btn").innerText = localizationData['invert-btn'][language];
     document.getElementById("reset-btn").innerText = localizationData['reset-btn'][language];
     document.getElementById("download-btn").innerText = localizationData['download-btn'][language];
     //document.getElementById("note-text").innerText = localizationData['note-text'][language];
@@ -239,6 +247,7 @@ function fetchLatestCommitTime() {
 
 document.getElementById("load-btn").addEventListener("click",
     function() {
+        invert = false;
         let charaSelect = document.getElementById("chara-select");
         imgID = charaSelect.options[charaSelect.selectedIndex].value
         if (imgID)
@@ -256,6 +265,7 @@ document.getElementById("reset-btn").addEventListener("click",
             mouthID = "-1";
             faceImg.src = "";
             mouthImg.src = "";
+            invert = false;
         }
     }
 );
@@ -266,19 +276,19 @@ document.getElementById("download-btn").addEventListener("click",
         }
     }
 );
-/*
+
 document.getElementById("invert-btn").addEventListener("click",
     function() {
         if (loaded) {
-            invertColors();
+            invert = !invert;
+            if (invert) {
+                invertColors();
+            } else {
+                mergeImage();
+            }
         }
     }
 );
-*/
-
-
-
-
 
 function loadChara() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -312,6 +322,12 @@ function loadJsonData() {
             offset = [];
             offset.push(json['offset']['x']);
             offset.push(json['offset']['y']);
+            /*
+            if (imgID == '110040_01') {
+                offset.push(json['offset']['x1']);
+                offset.push(json['offset']['y1']);
+            }
+            */
             partsData = json['partsData'];
             loadOptions();
         }).catch(function(error) {
@@ -343,6 +359,8 @@ function loadOptions() {
     mouthOptions.selectedIndex = -1;
     faceID = "0";
     mouthID = "0";
+    faceID2 = "0";
+    mouthID2 = "0";
     loaded = true;
     refreshPicker();
 }
@@ -353,6 +371,7 @@ function refreshPicker() {
             faceID = this.val()
             faceImg.src = option.target.currentSrc;
             mergeImage();
+            invert = false;
         }
     });
     $("select.mouth-select").imagepicker({
@@ -360,6 +379,7 @@ function refreshPicker() {
             mouthID = this.val()
             mouthImg.src = option.target.currentSrc;
             mergeImage();
+            invert = false;
         }
     });
 }
@@ -371,6 +391,7 @@ function mergeImage() {
     }
     ctx.drawImage(faceImg, offset[0], offset[1]);
     ctx.drawImage(mouthImg, offset[0], offset[1]);
+    //if (imgID == '110040_01') {}
 }
 
 function resetCanvas() {
@@ -388,9 +409,9 @@ function invertColors() {
         var b = dataArr[i + 2];
         var a = dataArr[i + 3];
 
-        var invertedRed = 255 - r;
-        var invertedGreen = 255 - g;
-        var invertedBlue = 255 - b;
+        var invertedRed = 301 - r;
+        var invertedGreen = 237 - g;
+        var invertedBlue = 364 - b;
 
         dataArr[i] = invertedRed;
         dataArr[i + 1] = invertedGreen;
@@ -409,44 +430,3 @@ function downloadCanvasAsImage(filename) {
         downloadLink.click();
     });
 }
-/*
-document.addEventListener('DOMContentLoaded', function() {
-    canvasDiv = document.getElementById('canvas-canvas');
-
-    let pos = {
-        top: 0,
-        left: 0,
-        x: 0,
-        y: 0
-    };
-
-    const mouseDownHandler = function(e) {
-        canvasDiv.style.cursor = 'grabbing';
-        //canvasDiv.style.userSelect = 'none';
-
-        pos = {
-            left: canvasDiv.scrollLeft,
-            top: canvasDiv.scrollTop,
-            x: e.clientX,
-            y: e.clientY,
-        };
-
-        document.addEventListener('mousemove', mouseMoveHandler);
-        document.addEventListener('mouseup', mouseUpHandler);
-    };
-
-    const mouseMoveHandler = function(e) {
-        const dx = e.clientX - pos.x;
-        const dy = e.clientY - pos.y;
-        canvasDiv.scrollTop = pos.top - dy;
-        canvasDiv.scrollLeft = pos.left - dx;
-    };
-    const mouseUpHandler = function() {
-        canvasDiv.style.cursor = 'grab';
-        //canvasDiv.style.removeProperty('user-select');
-        document.removeEventListener('mousemove', mouseMoveHandler);
-        document.removeEventListener('mouseup', mouseUpHandler);
-    };
-    canvasDiv.addEventListener('mousedown', mouseDownHandler);
-});
-*/
