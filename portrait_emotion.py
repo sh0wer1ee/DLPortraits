@@ -36,8 +36,11 @@ specialAlphaID = {
     '200013_01':[1, 4],
     '210040_01':[1, 2]
 }
-ignoredMultiPartsAlphaID = {
-    '110040_01':[16, 17, 18, 19, 20, 21, 22, 23, 24, 25]
+multiPartsAlphaID = {
+    '110040_01':{
+        'face':[16],
+        'mouth':[17, 18, 19, 20, 21, 22, 23, 24, 25]
+    }
 }
 #--CONFIG--#
 INPUT = os.path.join(ROOT, inputFolder)
@@ -137,6 +140,9 @@ def classifyFaceMouth(indexTable, baseName):
         'faceParts':[],
         'mouthParts':[]
     }
+    if baseName in multiPartsAlphaID:
+        partsData['face2Parts'] = []
+        partsData['mouth2Parts'] = []
     sortedList = sorted(indexTable.items(), key = lambda kv:(kv[1], kv[0]))
     try: # some indexTables are empty
         minID = sortedList[0][1] if (sortedList[0][1] >= 0 or sortedList[0][1] == -2) else 0
@@ -150,8 +156,13 @@ def classifyFaceMouth(indexTable, baseName):
             partsData['faceParts'].append(filePath)
         elif baseName in specialAlphaID and aidx in specialAlphaID[baseName]:
             partsData['faceParts'].append(filePath)
-        elif baseName in ignoredMultiPartsAlphaID and aidx in ignoredMultiPartsAlphaID[baseName]:
-            pass
+        elif baseName in multiPartsAlphaID:
+            if aidx in multiPartsAlphaID[baseName]['face']:
+                partsData['face2Parts'].append(filePath)
+            elif aidx in multiPartsAlphaID[baseName]['mouth']:
+                partsData['mouth2Parts'].append(filePath)
+            else:
+                partsData['mouthParts'].append(filePath)
         else:
             partsData['mouthParts'].append(filePath)
     return partsData

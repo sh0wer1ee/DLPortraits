@@ -8,6 +8,8 @@ var canvas = document.getElementById("canvas");
 var logText = document.getElementById("log-text");
 var faceOptions = document.getElementById("face-select");
 var mouthOptions = document.getElementById("mouth-select");
+var face2Options = document.getElementById("face2-select");
+var mouth2Options = document.getElementById("mouth2-select");
 var downloadBtn = document.getElementById("download-btn");
 var ctx = canvas.getContext("2d");
 
@@ -16,9 +18,13 @@ var imgID = "";
 var imgGroup = new Array();
 var baseImg = new Image();
 var faceImg = new Image();
+var face2Img = new Image();
 var faceID = "0";
+var face2ID = "0";
 var mouthImg = new Image();
+var mouth2Img = new Image();
 var mouthID = "0";
+var mouth2ID = "0";
 var loaded = false;
 var partsData = [];
 var offset = [];
@@ -260,19 +266,33 @@ document.getElementById("reset-btn").addEventListener("click",
             resetCanvas();
             faceOptions.selectedIndex = -1;
             mouthOptions.selectedIndex = -1;
+            if (imgID == '110040_01') {
+                face2ID = "-1";
+                mouth2ID = "-1";
+                face2Img.src = "";
+                mouth2Img.src = "";
+                face2Options.selectedIndex = -1;
+                mouth2Options.selectedIndex = -1;
+            }
             refreshPicker();
             faceID = "-1";
             mouthID = "-1";
             faceImg.src = "";
             mouthImg.src = "";
             invert = false;
+
         }
     }
 );
 document.getElementById("download-btn").addEventListener("click",
     function() {
         if (loaded) {
-            downloadCanvasAsImage(`${imgID}_${faceID}_${mouthID}.png`)
+            if (imgID != '110040_01') {
+                downloadCanvasAsImage(`${imgID}_${faceID}_${mouthID}.png`)
+            } else {
+                downloadCanvasAsImage(`${imgID}_${faceID}_${mouthID}_${face2ID}_${mouth2ID}.png`)
+            }
+
         }
     }
 );
@@ -294,6 +314,10 @@ function loadChara() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     faceImg.src = "";
     mouthImg.src = "";
+    if (imgID == '110040_01') {
+        face2Img.src = "";
+        mouth2Img.src = "";
+    }
     logText.innerText = localizationData['loading-log'][language];
     // load image
     baseImg.src = `${portraitPath}${imgID}/${imgID}_base.png`;
@@ -322,12 +346,10 @@ function loadJsonData() {
             offset = [];
             offset.push(json['offset']['x']);
             offset.push(json['offset']['y']);
-            /*
             if (imgID == '110040_01') {
                 offset.push(json['offset']['x1']);
                 offset.push(json['offset']['y1']);
             }
-            */
             partsData = json['partsData'];
             loadOptions();
         }).catch(function(error) {
@@ -339,8 +361,8 @@ function loadJsonData() {
 
 // load select options
 function loadOptions() {
-    $("select.face-select").empty()
-    $("select.mouth-select").empty()
+    $("select.face-select").empty();
+    $("select.mouth-select").empty();
     partsData["faceParts"].forEach(function(item, index) {
         var optf = document.createElement('option');
         optf.setAttribute("data-img-src", item);
@@ -359,8 +381,32 @@ function loadOptions() {
     mouthOptions.selectedIndex = -1;
     faceID = "0";
     mouthID = "0";
-    faceID2 = "0";
-    mouthID2 = "0";
+    if (imgID == '110040_01') {
+        $("select.face2-select").empty();
+        $("select.mouth2-select").empty();
+        partsData["face2Parts"].forEach(function(item, index) {
+            var optf = document.createElement('option');
+            optf.setAttribute("data-img-src", item);
+            optf.setAttribute("id", index)
+            optf.setAttribute("value", index)
+            face2Options.appendChild(optf);
+        });
+        partsData["mouth2Parts"].forEach(function(item, index) {
+            var optm = document.createElement('option');
+            optm.setAttribute("data-img-src", item);
+            optm.setAttribute("id", index)
+            optm.setAttribute("value", index)
+            mouth2Options.appendChild(optm);
+        });
+        face2Options.selectedIndex = -1;
+        mouth2Options.selectedIndex = -1;
+        face2ID = "0";
+        mouth2ID = "0";
+    } else {
+        $("select.face2-select").empty();
+        $("select.mouth2-select").empty();
+        $(".thumbnails image_picker_selector").remove();
+    }
     loaded = true;
     refreshPicker();
 }
@@ -382,6 +428,22 @@ function refreshPicker() {
             invert = false;
         }
     });
+    $("select.face2-select").imagepicker({
+        selected: function(select, option, event) {
+            face2ID = this.val()
+            face2Img.src = option.target.currentSrc;
+            mergeImage();
+            invert = false;
+        }
+    });
+    $("select.mouth2-select").imagepicker({
+        selected: function(select, option, event) {
+            mouth2ID = this.val()
+            mouth2Img.src = option.target.currentSrc;
+            mergeImage();
+            invert = false;
+        }
+    });
 }
 
 function mergeImage() {
@@ -391,7 +453,10 @@ function mergeImage() {
     }
     ctx.drawImage(faceImg, offset[0], offset[1]);
     ctx.drawImage(mouthImg, offset[0], offset[1]);
-    //if (imgID == '110040_01') {}
+    if (imgID == '110040_01') {
+        ctx.drawImage(face2Img, offset[2], offset[3]);
+        ctx.drawImage(mouth2Img, offset[2], offset[3]);
+    }
 }
 
 function resetCanvas() {
