@@ -158,7 +158,9 @@ var localizationData = {
 $(document).ready(function() {
     var userLang = navigator.language || navigator.userLanguage;
     checkLang(userLang);
-    $('select.lang-select').select2();
+    $('select.lang-select').select2({
+        minimumResultsForSearch: -1
+    });
     $('select.lang-select').val(language).trigger('change');
     changeLang();
     //fetchLatestCommitTime();
