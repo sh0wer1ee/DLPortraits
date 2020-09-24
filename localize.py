@@ -1,5 +1,7 @@
 import json
 import os
+import textlabel
+import timeit
 
 textlabelJsonJP = json.load(open('json/JPTextLabel.json', encoding='utf8'))
 textlabelJsonZHCN = json.load(open('json/ZHCNTextLabel.json', encoding='utf8'))
@@ -91,7 +93,13 @@ def appendLocalizedJson():
         json.dump(sortedDic, f, indent=2, ensure_ascii=False)
 
 def main():
+    start = timeit.default_timer()
+
+    textlabel.main()
     appendLocalizedJson()
+
+    end = timeit.default_timer()
+    print('time spent: ' + str(end-start)) # 90 seconds..?
 
 if __name__ == '__main__':
     main()

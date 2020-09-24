@@ -202,13 +202,13 @@ def getDragonName(fileList, fileListDic):
     return fileDic
 
 def main():
-    dirData = {'fileList' : {}}
+    # dirData = {'fileList' : {}}
     for root, dirs, files in os.walk(INPUT, topdown=False):
         if files:
-            if 'emotion.story.chara' in root:
-                dirData['fileList'] = getCharaName(files, dirData['fileList'])
-            elif 'emotion.story.dragon' in root:
-                dirData['fileList'] = getDragonName(files, dirData['fileList'])
+            # if 'emotion.story.chara' in root:
+            #     dirData['fileList'] = getCharaName(files, dirData['fileList'])
+            # elif 'emotion.story.dragon' in root:
+            #     dirData['fileList'] = getDragonName(files, dirData['fileList'])
                 
             if files == ['100007_01_base_y']:
                 continue
