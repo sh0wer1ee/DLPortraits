@@ -11,6 +11,7 @@ var mouthOptions = document.getElementById("mouth-select");
 var face2Options = document.getElementById("face2-select");
 var mouth2Options = document.getElementById("mouth2-select");
 var downloadBtn = document.getElementById("download-btn");
+var anniversaryBtn = document.getElementById("anniversary-btn");
 var ctx = canvas.getContext("2d");
 
 var portraitPath = "./portrait_output/";
@@ -53,13 +54,13 @@ var localizationData = {
         zh_cn: '请选择面部差分：',
         zh_tw: '請選擇面部差分：',
         en_us: 'Select facial expression：',
-        jp: '目の差分を選ぶ'
+        jp: '目'
     },
     'mouth-select': {
         zh_cn: '请选择嘴部差分：',
         zh_tw: '請選擇嘴部差分：',
         en_us: 'Select mouth expression：',
-        jp: '口の差分を選ぶ'
+        jp: '口'
     },
     'invert-btn': {
         zh_cn: '负片效果',
@@ -89,7 +90,7 @@ var localizationData = {
         zh_cn: '龙约立绘查看/拼豆',
         zh_tw: '龍絆立繪查看/編輯',
         en_us: 'Dragalia Lost Portraits Viewer',
-        jp: 'ドラガリ立ち絵ビューアー'
+        jp: '[ドラガリ]カスタム立ち絵'
     },
     'loading-log': {
         zh_cn: '载入数据中...',
@@ -101,7 +102,7 @@ var localizationData = {
         zh_cn: '载入立绘文件表失败，请查看控制台。刷新网页以重新载入。',
         zh_tw: '載入立繪文件表失敗，請查看控制台。刷新頁面以重新載入。',
         en_us: 'Error loading filelist.json, please check the console or refresh the page.',
-        jp: 'ロードに失敗しました、コンソールを確認してください。このページを再読込します。'
+        jp: 'ロードに失敗しました、コンソールを確認してください。更新ボタンで再読み込みしてください'
     },
     'p-image-load-error-log': {
         zh_cn: '载入立绘图像数据失败，请查看控制台。',
@@ -137,7 +138,7 @@ var localizationData = {
         zh_cn: '请选择立绘差分',
         zh_tw: '請選擇立繪差分',
         en_us: 'Select emotion',
-        jp: '立ち絵差分を選ぶ'
+        jp: '立ち絵差分のカスタマイズ'
     },
     'menu-toggle': {
         zh_cn: '选项菜单',
@@ -150,9 +151,14 @@ var localizationData = {
         zh_tw: '選項',
         en_us: 'Options',
         jp: 'オプション'
+    },
+    'anniversary-btn': {
+        zh_cn: '龙约二周年快乐！',
+        zh_tw: '龍絆二週年快樂！',
+        en_us: 'Happy 2nd anniversary!',
+        jp: '2年記念日おめでとう！'
     }
 }
-
 
 
 $(document).ready(function() {
@@ -198,12 +204,14 @@ function changeLang() {
     document.getElementById("invert-btn").innerText = localizationData['invert-btn'][language];
     document.getElementById("reset-btn").innerText = localizationData['reset-btn'][language];
     document.getElementById("download-btn").innerText = localizationData['download-btn'][language];
+    document.getElementById("anniversary-btn").innerText = localizationData['anniversary-btn'][language];
     //document.getElementById("note-text").innerText = localizationData['note-text'][language];
     document.getElementById("close-modal").innerText = localizationData['close-modal'][language];
     document.getElementById("emotion-modal").innerText = localizationData['emotion-modal'][language];
     document.getElementById("emotionModalLabel").innerText = localizationData['emotionModalLabel'][language];
     document.getElementById("menu-toggle").innerText = localizationData['menu-toggle'][language];
     document.getElementById("sidebar-heading").innerText = localizationData['sidebar-heading'][language];
+
 }
 
 function buildCharaOptions() {
@@ -262,6 +270,7 @@ document.getElementById("load-btn").addEventListener("click",
             loadChara();
     }
 );
+
 document.getElementById("reset-btn").addEventListener("click",
     function() {
         if (loaded) {
@@ -286,6 +295,7 @@ document.getElementById("reset-btn").addEventListener("click",
         }
     }
 );
+
 document.getElementById("download-btn").addEventListener("click",
     function() {
         if (loaded) {
@@ -296,6 +306,12 @@ document.getElementById("download-btn").addEventListener("click",
             }
 
         }
+    }
+);
+
+document.getElementById("anniversary-btn").addEventListener("click",
+    function() {
+        confetti.toggle();
     }
 );
 

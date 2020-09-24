@@ -5,6 +5,7 @@ import re
 import shutil
 from UnityPy import AssetsManager
 import json
+import timeit
 
 http_proxy = 'http://127.0.0.1:10809'
 assetbundle = {
@@ -75,11 +76,16 @@ def parseMasters():
     print('parse complete.')
 
 def main():
+    start = timeit.default_timer()
+
     loop = asyncio.get_event_loop()
     loop.run_until_complete(downloadMasters())
     print("download complete.")
 
     parseMasters()
+
+    end = timeit.default_timer()
+    print('time spent: ' + str(end-start)) # 90 seconds..?
 
 if __name__ == '__main__':
     main()
