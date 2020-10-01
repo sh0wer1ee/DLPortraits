@@ -65,7 +65,7 @@ def dumpTextlabel(filepath, region):
         for o in asset.objects.values():
             data = o.read()
             if str(data.type) == 'MonoBehaviour' and str(data.name) == 'TextLabel':
-                tree = data.read_type_tree()
+                tree = data.type_tree
                 with open('%s/%sTextLabel.json' % (JSON, region), 'w', encoding='utf8') as f:
                     json.dump(process_json(tree), f, indent=2, ensure_ascii=False)
 
