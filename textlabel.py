@@ -8,11 +8,15 @@ import json
 import timeit
 
 http_proxy = 'http://127.0.0.1:10809'
+#--CONFIG--
+resVer = '20201012_lgAMJZOe6RAUaGfu'
+#--CONFIG--
 assetbundle = {
-    'jp':'../DLScripts/prs_manifests/old/assetbundle.manifest',
-    'zh_cn':'../DLScripts/prs_manifests/old/assetbundle.zh_cn.manifest',
-    'zh_tw':'../DLScripts/prs_manifests/old/assetbundle.zh_tw.manifest',
-    'en_us':'../DLScripts/prs_manifests/old/assetbundle.en_us.manifest'}
+    'jp':f'../DLScripts/prs_manifests_archive/{resVer}/assetbundle.manifest',
+    'zh_cn':f'../DLScripts/prs_manifests_archive/{resVer}/assetbundle.zh_cn.manifest',
+    'zh_tw':f'../DLScripts/prs_manifests_archive/{resVer}/assetbundle.zh_tw.manifest',
+    'en_us':f'../DLScripts/prs_manifests_archive/{resVer}/assetbundle.en_us.manifest'}
+
 ROOT = os.path.dirname(os.path.realpath(__file__))
 JSON = os.path.join(ROOT, 'json')
 MASTER = os.path.join(ROOT, 'master')

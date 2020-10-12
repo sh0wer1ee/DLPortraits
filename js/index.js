@@ -11,7 +11,7 @@ var mouthOptions = document.getElementById("mouth-select");
 var face2Options = document.getElementById("face2-select");
 var mouth2Options = document.getElementById("mouth2-select");
 var downloadBtn = document.getElementById("download-btn");
-var anniversaryBtn = document.getElementById("anniversary-btn");
+//var anniversaryBtn = document.getElementById("anniversary-btn");
 var ctx = canvas.getContext("2d");
 
 var portraitPath = "./portrait_output/";
@@ -151,15 +151,17 @@ var localizationData = {
         zh_tw: '選項',
         en_us: 'Options',
         jp: 'オプション'
-    },
+    }
+}
+
+/*
     'anniversary-btn': {
         zh_cn: '龙约二周年快乐！',
         zh_tw: '龍絆二週年快樂！',
         en_us: 'Happy 2nd anniversary!',
         jp: '2年記念日おめでとう！'
     }
-}
-
+ */
 
 $(document).ready(function() {
     var userLang = navigator.language || navigator.userLanguage;
@@ -204,7 +206,7 @@ function changeLang() {
     document.getElementById("invert-btn").innerText = localizationData['invert-btn'][language];
     document.getElementById("reset-btn").innerText = localizationData['reset-btn'][language];
     document.getElementById("download-btn").innerText = localizationData['download-btn'][language];
-    document.getElementById("anniversary-btn").innerText = localizationData['anniversary-btn'][language];
+    //document.getElementById("anniversary-btn").innerText = localizationData['anniversary-btn'][language];
     //document.getElementById("note-text").innerText = localizationData['note-text'][language];
     document.getElementById("close-modal").innerText = localizationData['close-modal'][language];
     document.getElementById("emotion-modal").innerText = localizationData['emotion-modal'][language];
@@ -309,11 +311,13 @@ document.getElementById("download-btn").addEventListener("click",
     }
 );
 
+/*
 document.getElementById("anniversary-btn").addEventListener("click",
     function() {
         confetti.toggle();
     }
 );
+*/
 
 document.getElementById("invert-btn").addEventListener("click",
     function() {

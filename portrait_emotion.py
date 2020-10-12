@@ -156,6 +156,7 @@ def classifyFaceMouth(indexTable, baseName):
         if aidx == minID:
             partsData['faceParts'].append(filePath)
         elif baseName in specialAlphaID and aidx in specialAlphaID[baseName]:
+            # If something wrong with default classification, add alpha data to specialAlphaID.
             partsData['faceParts'].append(filePath)
         elif baseName in multiPartsAlphaID:
             if aidx in multiPartsAlphaID[baseName]['face']:
