@@ -88,14 +88,14 @@ def appendLocalizedJson():
                     localDic['jp'] = '%s %s' % (f, getName(f, 'jp'))
                     localizedDirDataJson['fileList'][f] = localDic
     sortedDic = dict(sorted(localizedDirDataJson.items()))
-
+    # Why the new dict is not sorted
     with open('localizedDirData.json', 'w', encoding='utf8') as f:
         json.dump(sortedDic, f, indent=2, ensure_ascii=False)
 
 def main():
     start = timeit.default_timer()
 
-    textlabel.main()
+    #textlabel.main()
     appendLocalizedJson()
 
     end = timeit.default_timer()

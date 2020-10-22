@@ -1,6 +1,7 @@
 '''
     Dump the portrait base and parts from portrait assets.
-    You need to download them with manifest_diff_download.py from DLScripts.
+    You need to download them with diff_downloader.py from DLScripts.
+    (filter string: emotion/story/chara & emotion/story/dragon)
 '''
 
 import os
@@ -62,12 +63,11 @@ def processAsset(filePath):
         for o in asset.objects.values():
             data = o.read()
             if str(data.type) == 'MonoBehaviour':
-                tree = data.read_type_tree()
+                tree = data.type_tree
                 offset, indexTable = parseMono(tree)
             if str(data.type) == 'Texture2D':
                 imageData[data.name] = data.image
-
-    
+ 
     partsData = classifyFaceMouth(indexTable, baseName)
     
     dataJson['offset'] = offset
@@ -221,9 +221,6 @@ def main():
 
     # with open(('%s\\dirData.json') % OUTPUT, 'w', encoding='utf8') as f:
     #     json.dump(dirData, f, indent=2, ensure_ascii=False)
-    
-
-    
 
 if __name__ == '__main__':
     main()
