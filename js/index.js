@@ -171,7 +171,7 @@ $(document).ready(function() {
     });
     $('select.lang-select').val(language).trigger('change');
     changeLang();
-    //fetchLatestCommitTime();
+    fetchLatestCommitTime();
 });
 
 function checkLang(userLang) {
@@ -254,9 +254,12 @@ function fetchLatestCommitTime() {
         })
         .then(response => response.json())
         .then(json => {
-            latestTime = json.commit.commit.author.date
-            document.getElementById("commit-url").href = json.commit.html_url;
-            document.getElementById("update-time").innerText = `Last update: ${latestTime}`;
+            latestTime = json.commit.commit.author.date;
+            var d = new Date(latestTime);
+            var datestring = (d.getFullYear() + '/' + ("0" + (d.getMonth() + 1)).slice(-2) + '/' +
+                ("0" + d.getDate()).slice(-2) + " " + ("0" + d.getHours()).slice(-2) + ":" + ("0" + d.getMinutes()).slice(-2));
+            document.getElementById("update-time").innerText = `Last update: ${datestring}`;
+            document.getElementById("update-time").href = json.commit.html_url;
         }).catch(function(error) {
             console.log(error);
             document.getElementById("update-time").innerText = `Last update: N/A`;
