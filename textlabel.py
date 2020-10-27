@@ -9,7 +9,7 @@ import timeit
 
 http_proxy = 'http://127.0.0.1:10809'
 #--CONFIG--
-resVer = '20201022_uEFtwvE4V2GcTlHf'
+resVer = '20201027_zJ5tYnaD7CKBdsiV'
 #--CONFIG--
 assetbundle = {
     'jp':f'../DLScripts/prs_manifests_archive/{resVer}/assetbundle.manifest',
