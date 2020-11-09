@@ -14,13 +14,14 @@ dragalia lost portrait viewer (experimental)
 - `localize.py`: Append new portraits info to `portrait_output/localizedDirData.json` with basic localization from textlabels.
 - `parts_combine.py`: Merge test.
 # Demo
-- [github.io](https://sh0wer1ee.github.io/DLPortraits)
-- [gitee.io](https://sh0wer1ee.gitee.io/DLPortraits)
-- [netlify](https://dlportraits.netlify.app)
+- [github.io](https://sh0wer1ee.github.io/DLPortraits)(ghpage)
+- [gitee.io](https://sh0wer1ee.gitee.io/DLPortraits)(gitee page)
+- [netlify](https://dlportraits.netlify.app)(backup)
 # Note
 - Some parts combination may seem odd, and some chara have no parts.
 - Friendly with mobile devices now.
 - Copyright is owned by Cygames & Nintendo.
 - If you find error(s) in face-mouth classification or portrait names, feel free to open an issue.
 - If you want to contribute to the localization, feel free to open a pull request. (Currently the localization is made by my own, so typos and errors are inevitable.)
+- Planning to remake the site with vue.js if I am free. Because this site is a really quick & dirty & ugly implementation of original python codes, and is for self-use at first until my friends asked me to make a site.
 - 简中介绍请看[nga](https://nga.178.com/read.php?tid=22913469)(偷懒)
