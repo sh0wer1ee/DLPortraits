@@ -75,6 +75,7 @@ def generateLocalized():
 def appendLocalizedJson():
     # Save my life
     localizedDirDataJson = json.load(open('portrait_output/localizedDirData.json', encoding='utf8'))
+    recentlyAdded = []
 
     for root, dirs, files in os.walk('portrait_asset', topdown=False):
         if files:
@@ -87,6 +88,8 @@ def appendLocalizedJson():
                     localDic['en_us'] = '%s %s' % (f, getName(f, 'en_us')) 
                     localDic['jp'] = '%s %s' % (f, getName(f, 'jp'))
                     localizedDirDataJson['fileList'][f] = localDic
+                    recentlyAdded.append(f)
+    localizedDirDataJson['recentlyAdded'] = recentlyAdded
     sortedDic = dict(sorted(localizedDirDataJson.items()))
     # Why the new dict is not sorted
     with open('localizedDirData.json', 'w', encoding='utf8') as f:

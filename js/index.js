@@ -264,6 +264,8 @@ function buildCharaOptions() {
                 //templateSelection: formatState,
                 allowClear: true
             });
+            var p = json['recentlyAdded'];
+            document.getElementById("update-portrait").innerText = `Recently added: ${p}`;
         }).catch(function(error) {
             console.log(error);
             document.getElementById("log-text").innerText = localizationData['filelist-load-error-log'][language];
@@ -285,7 +287,6 @@ function fetchLatestCommitTime() {
             var datestring = (d.getFullYear() + '/' + ("0" + (d.getMonth() + 1)).slice(-2) + '/' +
                 ("0" + d.getDate()).slice(-2) + " " + ("0" + d.getHours()).slice(-2) + ":" + ("0" + d.getMinutes()).slice(-2));
             document.getElementById("update-time").innerText = `Last update: ${datestring}`;
-            document.getElementById("update-time").href = json.commit.html_url;
         }).catch(function(error) {
             console.log(error);
             document.getElementById("update-time").innerText = `Last update: N/A`;
