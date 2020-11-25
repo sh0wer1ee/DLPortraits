@@ -265,7 +265,23 @@ function buildCharaOptions() {
                 allowClear: true
             });
             var p = json['recentlyAdded'];
-            document.getElementById("update-portrait").innerText = `Recently added: ${p}`;
+            var div = document.getElementById('update-portrait-index');
+            div.innerHTML = '';
+            p.forEach(function(value) {
+                var index = document.createElement('span');
+                index.id = value;
+                index.style = "font-size: 10px; text-decoration: underline; display:block; color: rgb(64, 112, 255); cursor: pointer;";
+                index.innerHTML = `${json['fileList'][value][language]}`;
+                index.onclick = function() {
+                    invert = false;
+                    imgID = value;
+                    if (imgID)
+                        loadChara();
+                }
+                div.appendChild(index);
+            });
+
+
         }).catch(function(error) {
             console.log(error);
             document.getElementById("log-text").innerText = localizationData['filelist-load-error-log'][language];
