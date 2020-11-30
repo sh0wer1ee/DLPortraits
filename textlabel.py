@@ -8,14 +8,6 @@ import json
 import timeit
 
 http_proxy = 'http://127.0.0.1:10809'
-#--CONFIG--
-resVer = '20201027_zJ5tYnaD7CKBdsiV'
-#--CONFIG--
-assetbundle = {
-    'jp':f'../DLScripts/prs_manifests_archive/{resVer}/assetbundle.manifest',
-    'zh_cn':f'../DLScripts/prs_manifests_archive/{resVer}/assetbundle.zh_cn.manifest',
-    'zh_tw':f'../DLScripts/prs_manifests_archive/{resVer}/assetbundle.zh_tw.manifest',
-    'en_us':f'../DLScripts/prs_manifests_archive/{resVer}/assetbundle.en_us.manifest'}
 
 ROOT = os.path.dirname(os.path.realpath(__file__))
 JSON = os.path.join(ROOT, 'json')
@@ -23,7 +15,12 @@ MASTER = os.path.join(ROOT, 'master')
 os.makedirs(MASTER, exist_ok=True)
 os.makedirs(JSON, exist_ok=True)
 
-def loadMastersUrl():
+def loadMastersUrl(resVer):
+    assetbundle = {
+    'jp':f'../DLScripts/prs_manifests_archive/{resVer}/assetbundle.manifest',
+    'zh_cn':f'../DLScripts/prs_manifests_archive/{resVer}/assetbundle.zh_cn.manifest',
+    'zh_tw':f'../DLScripts/prs_manifests_archive/{resVer}/assetbundle.zh_tw.manifest',
+    'en_us':f'../DLScripts/prs_manifests_archive/{resVer}/assetbundle.en_us.manifest'}
     master = {}
     for lang in assetbundle:
         with open(assetbundle[lang], 'r', encoding='utf-8') as m:
@@ -43,8 +40,7 @@ async def download(session, url, filename):
             with open(os.path.join(MASTER, filename), 'wb') as f:
                 f.write(await resp.read())
 
-async def downloadMasters():
-    master = loadMastersUrl()
+async def downloadMasters(master):
     async with aiohttp.ClientSession() as session:
             await asyncio.gather(*[
                 download(session, master[region], region)
@@ -79,11 +75,11 @@ def parseMasters():
         dumpTextlabel(os.path.join(MASTER, f), region)
     print('parse complete.')
 
-def main():
+def main(resVer):
     start = timeit.default_timer()
 
     loop = asyncio.get_event_loop()
-    loop.run_until_complete(downloadMasters())
+    loop.run_until_complete(downloadMasters(loadMastersUrl(resVer)))
     print("download complete.")
 
     parseMasters()
@@ -92,4 +88,4 @@ def main():
     print('time spent: ' + str(end-start)) # 90 seconds..?
 
 if __name__ == '__main__':
-    main()
+    main('20201027_zJ5tYnaD7CKBdsiV')
