@@ -98,7 +98,7 @@ def appendLocalizedJson():
 def main():
     start = timeit.default_timer()
 
-    textlabel.main('20201130_5PTeAdEsB0WYRzxy')
+    textlabel.main('20201214_w3z3UrxBrkDE8Jsq')
     appendLocalizedJson()
 
     end = timeit.default_timer()
