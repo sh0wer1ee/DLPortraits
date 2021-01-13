@@ -103,7 +103,7 @@ def parseMono(mono):
     return partsDataTable, partsTextureIndexTable
 
 def combineYCbCrA(imageData, baseName, cidx = -9, aidx = -9):
-    if cidx == -1 and aidx == -1: # 210038_01
+    if cidx == -1: # 210038_01
         return
     imageBase = ''
     if cidx == -9:

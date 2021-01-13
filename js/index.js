@@ -254,7 +254,7 @@ function buildCharaOptions() {
             for (var key in json['fileList']) {
                 var option = document.createElement("option");
                 option.value = key;
-                option.text = json['fileList'][key][language];
+                option.text = `${key} ${json['fileList'][key][language]}`;
                 //option.setAttribute('data-image', portraitPath + key + '/' + key + "_base.png");
                 document.getElementById("chara-select").appendChild(option);
             }
@@ -271,7 +271,7 @@ function buildCharaOptions() {
                 var index = document.createElement('span');
                 index.id = value;
                 index.style = "font-size: 10px; text-decoration: underline; display:block; color: rgb(64, 112, 255); cursor: pointer;";
-                index.innerHTML = `${json['fileList'][value][language]}`;
+                index.innerHTML = `${value} ${json['fileList'][value][language]}`;
                 index.onclick = function() {
                     invert = false;
                     imgID = value;

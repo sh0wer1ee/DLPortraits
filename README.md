@@ -7,7 +7,7 @@ dragalia lost portrait viewer (experimental)
 - [Simple Sidebar](https://startbootstrap.com/templates/simple-sidebar/)
 - [Bootstrap](https://getbootstrap.com/)
 - [confetti-js](https://github.com/Agezao/confetti-js)
-- Kino (A friend of mine who helped the jp ui localization.|好群友奇诺帮忙完成了日文界面的本地化，我日语本当🔨)
+- [bakedCustard](https://github.com/bakedCustard) (A friend of mine who helped the jp ui localization.|好群友奇诺帮忙完成了日文界面的本地化，我日语本当🔨)
 - Sitong (A friend of mine who made the website icon. Original idea is from [aiyom](https://nga.178.com/nuke.php?func=ucp&uid=17846713)|好群友四筒帮忙做了网站icon，原设计思路是柚子姐姐做的二群图标)
 # Usage
 - `portrait_emotion.py`: Process the raw assets in `portrait_asset` folder. The output which contain png files and json files will be saved to `portrait_output`.

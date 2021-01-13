@@ -65,9 +65,9 @@ def generateLocalized():
     for key in dirDataJson['fileList']:
         localDic = {}
         localDic['zh_cn'] = dirDataJson['fileList'][key]
-        localDic['zh_tw'] = '%s %s' % (key, getName(key, 'zh_tw'))
-        localDic['en_us'] = '%s %s' % (key, getName(key, 'en_us')) # enDirDataJson['fileList'][key]
-        localDic['jp'] = '%s %s' % (key, getName(key, 'jp'))
+        localDic['zh_tw'] = '%s' % (getName(key, 'zh_tw'))
+        localDic['en_us'] = '%s' % (getName(key, 'en_us')) # enDirDataJson['fileList'][key]
+        localDic['jp'] = '%s' % (getName(key, 'jp'))
         localizedDirDataJson['fileList'][key] = localDic
     with open('localizedDirData.json', 'w', encoding='utf8') as f:
         json.dump(localizedDirDataJson, f, indent=2, ensure_ascii=False)
@@ -83,10 +83,10 @@ def appendLocalizedJson():
                 if f not in localizedDirDataJson:
                     print(f)
                     localDic = {}
-                    localDic['zh_cn'] = '%s %s' % (f, getName(f, 'zh_cn'))
-                    localDic['zh_tw'] = '%s %s' % (f, getName(f, 'zh_tw'))
-                    localDic['en_us'] = '%s %s' % (f, getName(f, 'en_us')) 
-                    localDic['jp'] = '%s %s' % (f, getName(f, 'jp'))
+                    localDic['zh_cn'] = '%s' % (getName(f, 'zh_cn'))
+                    localDic['zh_tw'] = '%s' % (getName(f, 'zh_tw'))
+                    localDic['en_us'] = '%s' % (getName(f, 'en_us')) 
+                    localDic['jp'] = '%s' % (getName(f, 'jp'))
                     localizedDirDataJson['fileList'][f] = localDic
                     recentlyAdded.append(f)
     localizedDirDataJson['recentlyAdded'] = recentlyAdded
