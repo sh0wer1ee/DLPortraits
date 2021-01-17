@@ -216,24 +216,24 @@ function changeLang() {
 
 }
 
-function formatState(state) {
-    if (!state.id) {
-        console.log(state)
-        return state.text;
-    }
-    return +state.text;
+function formatSelectionState(opt) {
+    return opt.text.replace('<br>', ' ');
 }
 
-function formatState(opt) {
+function formatResultState(opt) {
     if (!opt.id) {
-        return opt.text.toUpperCase();
+        return opt.text;
     }
     var optimage = $(opt.element).attr('data-image');
     if (!optimage) {
-        return opt.text.toUpperCase();
+        return opt.text;
     } else {
         var $opt = $(
-            '<span><img src="' + optimage + '" width="60px" /> ' + opt.text.toUpperCase() + '</span>'
+            `<div class="select2-center-option">
+              <span><img src="${optimage}"/></span>
+              <span>${opt.text}</span>
+            </div>`
+            //'<span><img src="' + optimage + '" width="60px" /> ' + opt.text + '</span>'
         );
         return $opt;
     }
@@ -254,14 +254,14 @@ function buildCharaOptions() {
             for (var key in json['fileList']) {
                 var option = document.createElement("option");
                 option.value = key;
-                option.text = `${key} ${json['fileList'][key][language]}`;
-                //option.setAttribute('data-image', portraitPath + key + '/' + key + "_base.png");
+                option.text = `${key}<br>${json['fileList'][key][language]}`;
+                option.setAttribute('data-image', portraitPath + 'thumbnails/' + key + ".png");
                 document.getElementById("chara-select").appendChild(option);
             }
             $('select.chara-select').select2({
                 placeholder: localizationData['search-placeholder'][language],
-                //templateResult: formatState,
-                //templateSelection: formatState,
+                templateResult: formatResultState,
+                templateSelection: formatSelectionState,
                 allowClear: true
             });
             var p = json['recentlyAdded'];

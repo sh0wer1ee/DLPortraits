@@ -6,6 +6,7 @@ __pycache__
 /localizedDirData.json
 /find.py
 /assetdl_mt.py
+/parts_combine.py
 /.vscode
 /master
 /css/sidebar-themes.css

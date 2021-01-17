@@ -64,3 +64,29 @@ a:hover {
 a:active {
     text-decoration: none;
 }
+
+ul.select2-results__options li {
+    font-size: 13px;
+}
+
+.select2-container--default .select2-results>.select2-results__options {
+    max-height: 500px !important;
+}
+
+.select2-container .select2-selection--multiple .select2-selection__rendered {
+    white-space: break-spaces!important;
+}
+
+.select2-center-option,
+.select2-selection__choice {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.select2-center-option img {
+    width: 64px;
+    max-width: 100%;
+    height: auto;
+    margin-right: 5px;
+}

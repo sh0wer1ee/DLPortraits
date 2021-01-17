@@ -203,6 +203,11 @@ def getDragonName(fileList, fileListDic):
         
     return fileDic
 
+def generateThumbNails(pid):
+    baseImg = Image.open(('%s\\%s\\%s_base.png') % (outputFolder, pid, pid))
+    baseImg.thumbnail((128, 128))
+    baseImg.save('%s\\thumbnails\\%s.png' % (outputFolder, pid))
+
 def main():
     # dirData = {'fileList' : {}}
     for root, dirs, files in os.walk(INPUT, topdown=False):
@@ -219,6 +224,7 @@ def main():
                 pbar.set_description('processing %s...' % f)
                 src = os.path.realpath(os.path.join(root, f))
                 processAsset(src)
+                generateThumbNails(f)
 
     # with open(('%s\\dirData.json') % OUTPUT, 'w', encoding='utf8') as f:
     #     json.dump(dirData, f, indent=2, ensure_ascii=False)
