@@ -5,11 +5,35 @@
  */
 
 .btn-primary,
-.btn-primary:hover,
 .btn-primary:active,
-.btn-primary:visited {
-    background-color: #4294ff !important;
+.btn-primary:visited,
+.btn-primary:focus,
+.btn-primary:active:focus {
+    /*color: rgb(128, 21, 5);*/
+    background-color: rgb(210, 0, 1) !important;
+    border-color: rgb(210, 0, 1) !important;
+    box-shadow: none!important;
 }
+
+.btn-primary:hover {
+    background-color: rgb(128, 21, 5) !important;
+    border-color: rgb(128, 21, 5) !important;
+    box-shadow: none!important;
+}
+
+
+/*
+.bg-light {
+    background-color: rgb(0, 0, 0) !important;
+}
+
+.border-right {
+    border-right: 1px solid rgb(190, 0, 0)!important;
+}
+#sidebar-heading {
+    color: #ffffff;
+}
+*/
 
 #wrapper {
     overflow-x: hidden;

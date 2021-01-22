@@ -11,6 +11,7 @@ var mouthOptions = document.getElementById("mouth-select");
 var face2Options = document.getElementById("face2-select");
 var mouth2Options = document.getElementById("mouth2-select");
 var downloadBtn = document.getElementById("download-btn");
+var p5sStyleBtn = document.getElementById("p5sstyle-btn");
 //var anniversaryBtn = document.getElementById("anniversary-btn");
 var ctx = canvas.getContext("2d");
 
@@ -31,6 +32,7 @@ var partsData = [];
 var offset = [];
 var language = "en_us";
 var invert = false;
+var style = false;
 var localizationData = {
     'search-placeholder': {
         zh_cn: '输入关键字以查询',
@@ -151,6 +153,12 @@ var localizationData = {
         zh_tw: '選項',
         en_us: 'Options',
         jp: 'オプション'
+    },
+    'p5sstyle-btn': {
+        zh_cn: 'P5S风格（期间限定）',
+        zh_tw: 'P5S風格（期間限定）',
+        en_us: 'P5S Style (limited-time)',
+        jp: 'P5S風格（期間限定）'
     }
 }
 
@@ -207,12 +215,14 @@ function changeLang() {
     document.getElementById("reset-btn").innerText = localizationData['reset-btn'][language];
     document.getElementById("download-btn").innerText = localizationData['download-btn'][language];
     //document.getElementById("anniversary-btn").innerText = localizationData['anniversary-btn'][language];
+    document.getElementById("p5sstyle-btn").innerText = localizationData['p5sstyle-btn'][language];
     //document.getElementById("note-text").innerText = localizationData['note-text'][language];
     document.getElementById("close-modal").innerText = localizationData['close-modal'][language];
     document.getElementById("emotion-modal").innerText = localizationData['emotion-modal'][language];
     document.getElementById("emotionModalLabel").innerText = localizationData['emotionModalLabel'][language];
     document.getElementById("menu-toggle").innerText = localizationData['menu-toggle'][language];
     document.getElementById("sidebar-heading").innerText = localizationData['sidebar-heading'][language];
+
 
 }
 
@@ -274,6 +284,7 @@ function buildCharaOptions() {
                 index.innerHTML = `${value} ${json['fileList'][value][language]}`;
                 index.onclick = function() {
                     invert = false;
+                    style = false;
                     imgID = value;
                     if (imgID)
                         loadChara();
@@ -312,6 +323,7 @@ function fetchLatestCommitTime() {
 document.getElementById("load-btn").addEventListener("click",
     function() {
         invert = false;
+        style = false;
         let charaSelect = document.getElementById("chara-select");
         imgID = charaSelect.options[charaSelect.selectedIndex].value
         if (imgID)
@@ -322,6 +334,8 @@ document.getElementById("load-btn").addEventListener("click",
 document.getElementById("reset-btn").addEventListener("click",
     function() {
         if (loaded) {
+            invert = false;
+            style = false;
             resetCanvas();
             faceOptions.selectedIndex = -1;
             mouthOptions.selectedIndex = -1;
@@ -338,8 +352,6 @@ document.getElementById("reset-btn").addEventListener("click",
             mouthID = "-1";
             faceImg.src = "";
             mouthImg.src = "";
-            invert = false;
-
         }
     }
 );
@@ -374,6 +386,15 @@ document.getElementById("invert-btn").addEventListener("click",
             } else {
                 mergeImage();
             }
+        }
+    }
+);
+
+document.getElementById("p5sstyle-btn").addEventListener("click",
+    function() {
+        if (loaded) {
+            P5SStyling();
+            mergeImage();
         }
     }
 );
@@ -484,38 +505,44 @@ function refreshPicker() {
         selected: function(select, option, event) {
             faceID = this.val()
             faceImg.src = option.target.currentSrc;
-            mergeImage();
             invert = false;
+            //style = false;
+            mergeImage();
         }
     });
     $("select.mouth-select").imagepicker({
         selected: function(select, option, event) {
             mouthID = this.val()
             mouthImg.src = option.target.currentSrc;
-            mergeImage();
             invert = false;
+            //style = false;
+            mergeImage();
         }
     });
     $("select.face2-select").imagepicker({
         selected: function(select, option, event) {
             face2ID = this.val()
             face2Img.src = option.target.currentSrc;
-            mergeImage();
             invert = false;
+            //style = false;
+            mergeImage();
         }
     });
     $("select.mouth2-select").imagepicker({
         selected: function(select, option, event) {
             mouth2ID = this.val()
             mouth2Img.src = option.target.currentSrc;
-            mergeImage();
             invert = false;
+            //style = false;
+            mergeImage();
         }
     });
 }
 
 function mergeImage() {
     resetCanvas();
+    ctx.shadowOffsetX = 0;
+    ctx.shadowOffsetY = 0;
     if (faceID != "-1" && !(imgID.includes('_00'))) {
         ctx.clearRect(offset[0], offset[1], faceImg.width, faceImg.height);
     }
@@ -529,6 +556,14 @@ function mergeImage() {
 
 function resetCanvas() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
+    if (style) {
+        ctx.shadowOffsetX = -5;
+        ctx.shadowOffsetY = 5;
+        ctx.shadowColor = "red";
+    } else {
+        ctx.shadowOffsetX = 0;
+        ctx.shadowOffsetY = 0;
+    }
     ctx.drawImage(baseImg, 0, 0);
 }
 
@@ -552,6 +587,11 @@ function invertColors() {
     }
 
     ctx.putImageData(imageData, 0, 0);
+}
+
+function P5SStyling() {
+    style = !style;
+    invert = false;
 }
 
 function downloadCanvasAsImage(filename) {
