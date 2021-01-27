@@ -4169,10 +4169,22 @@
             "zh_tw": "牛頭天王",
             "en_us": "Gozu Tenno",
             "jp": "ゴズテンノウ"
+        },
+        "100015_05": {
+            "zh_cn": "谢斯（Fes）",
+            "zh_tw": "謝斯（Fes）",
+            "en_us": "Chelle (Gala)",
+            "jp": "シェス（Fes）"
+        },
+        "100015_07": {
+            "zh_cn": "谢斯（Fes通常）",
+            "zh_tw": "謝斯（Fes）",
+            "en_us": "Chelle (Gala Normal)",
+            "jp": "シェス（Fes）"
         }
     },
     "recentlyAdded": [
-        "100002_15",
-        "100006_11"
+        "100015_05",
+        "100015_07"
     ]
 }
