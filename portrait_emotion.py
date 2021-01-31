@@ -116,16 +116,19 @@ def combineYCbCrA(imageData, baseName, cidx = -9, aidx = -9):
     except KeyError:
         pass # ¯\_(ツ)_/¯
 
-    Y = imageData['%s_Y' % imageBase].convert('RGBA').split()[-1]
-    mergedImg = Image.merge('YCbCr',
-    (
-        Y,
-        imageData['%s_Cb' % imageBase].convert('L').resize(Y.size, Image.ANTIALIAS),
-        imageData['%s_Cr' % imageBase].convert('L').resize(Y.size, Image.ANTIALIAS)
-    )).convert('RGBA')
-    if aidx >= 0 or aidx == -9:
-        mergedImg.putalpha(alpha) 
-    mergedImg.save(('%s\\%s\\%s.png') % (OUTPUT, baseName, imageBase))
+    try:
+        Y = imageData['%s_Y' % imageBase].convert('RGBA').split()[-1]
+        mergedImg = Image.merge('YCbCr',
+        (
+            Y,
+            imageData['%s_Cb' % imageBase].convert('L').resize(Y.size, Image.ANTIALIAS),
+            imageData['%s_Cr' % imageBase].convert('L').resize(Y.size, Image.ANTIALIAS)
+        )).convert('RGBA')
+        if aidx >= 0 or aidx == -9:
+            mergedImg.putalpha(alpha) 
+        mergedImg.save(('%s\\%s\\%s.png') % (OUTPUT, baseName, imageBase))
+    except KeyError:
+        print('KeyError with %s' % imageBase)
 
 def loadNhaam(imageData):
     # missing Nhaam's base Y file

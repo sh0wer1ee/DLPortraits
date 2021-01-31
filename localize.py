@@ -90,15 +90,17 @@ def appendLocalizedJson():
                     localizedDirDataJson['fileList'][f] = localDic
                     recentlyAdded.append(f)
     localizedDirDataJson['recentlyAdded'] = recentlyAdded
-    sortedDic = dict(sorted(localizedDirDataJson.items()))
-    # Why the new dict is not sorted
+    sortedDic = {}
+    sortedDic['fileList'] = dict(sorted(localizedDirDataJson['fileList'].items(), key=lambda x:x[0]))
+    sortedDic['recentlyAdded'] = localizedDirDataJson['recentlyAdded']
+    
     with open('localizedDirData.json', 'w', encoding='utf8') as f:
         json.dump(sortedDic, f, indent=2, ensure_ascii=False)
 
 def main():
     start = timeit.default_timer()
 
-    textlabel.main('20210127_ceixwiGqBzfECogS')
+    textlabel.main('20210131_lqfRBhj2APlqf8RC')
     appendLocalizedJson()
 
     end = timeit.default_timer()
