@@ -5,6 +5,8 @@ $('select.lang-select').on('select2:select', function(e) {
 });
 
 var canvas = document.getElementById("canvas");
+var tmpCanvas = document.createElement('canvas');
+var tmpCtx = tmpCanvas.getContext('2d');
 var logText = document.getElementById("log-text");
 var faceOptions = document.getElementById("face-select");
 var mouthOptions = document.getElementById("mouth-select");
@@ -170,6 +172,8 @@ var localizationData = {
         jp: '2年記念日おめでとう！'
     }
  */
+tmpCanvas.width = 1024;
+tmpCanvas.height = 1024;
 
 $(document).ready(function() {
     var userLang = navigator.language || navigator.userLanguage;
@@ -336,7 +340,8 @@ document.getElementById("reset-btn").addEventListener("click",
         if (loaded) {
             invert = false;
             style = false;
-            resetCanvas();
+            resetTmpCanvas();
+            renderCanvas();
             faceOptions.selectedIndex = -1;
             mouthOptions.selectedIndex = -1;
             if (imgID == '110040_01') {
@@ -384,7 +389,7 @@ document.getElementById("invert-btn").addEventListener("click",
             if (invert) {
                 invertColors();
             } else {
-                mergeImage();
+                renderCanvas();
             }
         }
     }
@@ -394,13 +399,13 @@ document.getElementById("p5sstyle-btn").addEventListener("click",
     function() {
         if (loaded) {
             P5SStyling();
-            mergeImage();
+            renderCanvas();
         }
     }
 );
 
 function loadChara() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    tmpCtx.clearRect(0, 0, tmpCanvas.width, tmpCanvas.height);
     faceImg.src = "";
     mouthImg.src = "";
     if (imgID == '110040_01') {
@@ -412,7 +417,8 @@ function loadChara() {
     baseImg.src = `${portraitPath}${imgID}/${imgID}_base.png`;
     baseImg.onload = function() {
         logText.innerText = localizationData['load-success-log'][language];
-        ctx.drawImage(baseImg, 0, 0);
+        tmpCtx.drawImage(baseImg, 0, 0);
+        renderCanvas();
         loadJsonData();
     }
     baseImg.onerror = function() {
@@ -540,21 +546,25 @@ function refreshPicker() {
 }
 
 function mergeImage() {
-    resetCanvas();
-    ctx.shadowOffsetX = 0;
-    ctx.shadowOffsetY = 0;
+    resetTmpCanvas();
     if (faceID != "-1" && !(imgID.includes('_00'))) {
-        ctx.clearRect(offset[0], offset[1], faceImg.width, faceImg.height);
+        tmpCtx.clearRect(offset[0], offset[1], faceImg.width, faceImg.height);
     }
-    ctx.drawImage(faceImg, offset[0], offset[1]);
-    ctx.drawImage(mouthImg, offset[0], offset[1]);
+    tmpCtx.drawImage(faceImg, offset[0], offset[1]);
+    tmpCtx.drawImage(mouthImg, offset[0], offset[1]);
     if (imgID == '110040_01') {
-        ctx.drawImage(face2Img, offset[2], offset[3]);
-        ctx.drawImage(mouth2Img, offset[2], offset[3]);
+        tmpCtx.drawImage(face2Img, offset[2], offset[3]);
+        tmpCtx.drawImage(mouth2Img, offset[2], offset[3]);
     }
+    renderCanvas();
 }
 
-function resetCanvas() {
+function resetTmpCanvas() {
+    tmpCtx.clearRect(0, 0, tmpCanvas.width, tmpCanvas.height);
+    tmpCtx.drawImage(baseImg, 0, 0);
+}
+
+function renderCanvas() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     if (style) {
         ctx.shadowOffsetX = -5;
@@ -564,7 +574,7 @@ function resetCanvas() {
         ctx.shadowOffsetX = 0;
         ctx.shadowOffsetY = 0;
     }
-    ctx.drawImage(baseImg, 0, 0);
+    ctx.drawImage(tmpCanvas, 0, 0);
 }
 
 function invertColors() {
