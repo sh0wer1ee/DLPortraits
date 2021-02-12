@@ -4,22 +4,24 @@
  * Licensed under MIT (https://github.com/StartBootstrap/startbootstrap-simple-sidebar/blob/master/LICENSE)
  */
 
+
+/*
 .btn-primary,
 .btn-primary:active,
 .btn-primary:visited,
 .btn-primary:focus,
 .btn-primary:active:focus {
-    /*color: rgb(128, 21, 5);*/
+    //color: rgb(128, 21, 5);
     background-color: rgb(210, 0, 1) !important;
     border-color: rgb(210, 0, 1) !important;
     box-shadow: none!important;
 }
-
 .btn-primary:hover {
     background-color: rgb(128, 21, 5) !important;
     border-color: rgb(128, 21, 5) !important;
     box-shadow: none!important;
 }
+*/
 
 
 /*

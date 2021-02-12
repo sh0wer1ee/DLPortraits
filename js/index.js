@@ -13,7 +13,7 @@ var mouthOptions = document.getElementById("mouth-select");
 var face2Options = document.getElementById("face2-select");
 var mouth2Options = document.getElementById("mouth2-select");
 var downloadBtn = document.getElementById("download-btn");
-var p5sStyleBtn = document.getElementById("p5sstyle-btn");
+//var p5sStyleBtn = document.getElementById("p5sstyle-btn");
 //var anniversaryBtn = document.getElementById("anniversary-btn");
 var ctx = canvas.getContext("2d");
 
@@ -219,7 +219,7 @@ function changeLang() {
     document.getElementById("reset-btn").innerText = localizationData['reset-btn'][language];
     document.getElementById("download-btn").innerText = localizationData['download-btn'][language];
     //document.getElementById("anniversary-btn").innerText = localizationData['anniversary-btn'][language];
-    document.getElementById("p5sstyle-btn").innerText = localizationData['p5sstyle-btn'][language];
+    //document.getElementById("p5sstyle-btn").innerText = localizationData['p5sstyle-btn'][language];
     //document.getElementById("note-text").innerText = localizationData['note-text'][language];
     document.getElementById("close-modal").innerText = localizationData['close-modal'][language];
     document.getElementById("emotion-modal").innerText = localizationData['emotion-modal'][language];
@@ -394,7 +394,7 @@ document.getElementById("invert-btn").addEventListener("click",
         }
     }
 );
-
+/*
 document.getElementById("p5sstyle-btn").addEventListener("click",
     function() {
         if (loaded) {
@@ -403,7 +403,7 @@ document.getElementById("p5sstyle-btn").addEventListener("click",
         }
     }
 );
-
+*/
 function loadChara() {
     tmpCtx.clearRect(0, 0, tmpCanvas.width, tmpCanvas.height);
     faceImg.src = "";
