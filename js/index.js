@@ -407,7 +407,7 @@ document.getElementById("border-btn").addEventListener("click",
     function() {
         border = !border;
         if (border) {
-            canvas.style.border = '1px  black';
+            canvas.style.border = '1px dashed black';
         } else {
             canvas.style.border = 'none';
         }
