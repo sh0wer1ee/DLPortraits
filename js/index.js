@@ -34,6 +34,7 @@ var partsData = [];
 var offset = [];
 var language = "en_us";
 var invert = false;
+var border = false;
 var style = false;
 var localizationData = {
     'search-placeholder': {
@@ -65,6 +66,12 @@ var localizationData = {
         zh_tw: '請選擇嘴部差分：',
         en_us: 'Select mouth expression：',
         jp: '口'
+    },
+    'border-btn': {
+        zh_cn: '边框',
+        zh_tw: '邊框',
+        en_us: 'Toggle Border',
+        jp: 'ボーダー'
     },
     'invert-btn': {
         zh_cn: '负片效果',
@@ -215,6 +222,7 @@ function changeLang() {
     document.getElementById("load-btn").innerText = localizationData['load-btn'][language];
     document.getElementById("label-face-select").innerText = localizationData['face-select'][language];
     document.getElementById("label-mouth-select").innerText = localizationData['mouth-select'][language];
+    document.getElementById("border-btn").innerText = localizationData['border-btn'][language];
     document.getElementById("invert-btn").innerText = localizationData['invert-btn'][language];
     document.getElementById("reset-btn").innerText = localizationData['reset-btn'][language];
     document.getElementById("download-btn").innerText = localizationData['download-btn'][language];
@@ -391,6 +399,17 @@ document.getElementById("invert-btn").addEventListener("click",
             } else {
                 renderCanvas();
             }
+        }
+    }
+);
+
+document.getElementById("border-btn").addEventListener("click",
+    function() {
+        border = !border;
+        if (border) {
+            canvas.style.border = '1px  black';
+        } else {
+            canvas.style.border = 'none';
         }
     }
 );

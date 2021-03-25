@@ -123,9 +123,25 @@
     }
 }
 
-@media (min-width: 992px) {
+@media (min-width: 934px) {
+    #canvas {
+        width: 88vh;
+        /*height: 88%;*/
+    }
+}
+
+@media (min-height: 800px) {
     #canvas {
         width: 80%;
         height: 80%;
     }
 }
+
+
+/*
+@media (min-width: 992px) {
+    #canvas {
+        width: 80%;
+        height: 80%;
+    }
+}*/
