@@ -423,7 +423,7 @@
         "100007_07": {
             "zh_cn": "纳姆（大）",
             "zh_tw": "那姆",
-            "en_us": "Notte (Large)",
+            "en_us": "Notte (Size Changed)",
             "jp": "ナーム"
         },
         "100008_01": {
@@ -3811,15 +3811,15 @@
             "jp": "マーキナー"
         },
         "120219_01": {
-            "zh_cn": "精灵1",
+            "zh_cn": "夏莉1",
             "zh_tw": "妖精",
-            "en_us": "Faerie 1",
+            "en_us": "Shirley 1",
             "jp": "妖精"
         },
         "120219_02": {
-            "zh_cn": "精灵2",
+            "zh_cn": "夏莉2",
             "zh_tw": "妖精",
-            "en_us": "Faerie 2",
+            "en_us": "Shirley 2",
             "jp": "妖精"
         },
         "120220_01": {
@@ -4399,10 +4399,10 @@
             "jp": "プルートー"
         },
         "210153_01": {
-            "zh_cn": "纳姆（大大大）",
-            "zh_tw": "那姆",
-            "en_us": "Notte (Dragon)",
-            "jp": "ナーム"
+            "zh_cn": "纳姆（羽化）",
+            "zh_tw": "那姆（羽化）",
+            "en_us": "Notte (Metamorphosis)",
+            "jp": "ナーム（羽化）"
         }
     },
     "recentlyAdded": [
