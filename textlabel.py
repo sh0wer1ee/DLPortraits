@@ -3,7 +3,7 @@ import asyncio
 import os
 import re
 import shutil
-from UnityPy import AssetsManager
+import UnityPy
 import json
 import timeit
 
@@ -60,14 +60,13 @@ def process_json(tree):
     return tree
 
 def dumpTextlabel(filepath, region):
-    am = AssetsManager(filepath)
-    for asset in am.assets.values():
-        for o in asset.objects.values():
-            data = o.read()
-            if str(data.type) == 'MonoBehaviour' and str(data.name) == 'TextLabel':
-                tree = data.type_tree
-                with open('%s/%sTextLabel.json' % (JSON, region), 'w', encoding='utf8') as f:
-                    json.dump(process_json(tree), f, indent=2, ensure_ascii=False)
+    env = UnityPy.load(filepath)
+    for obj in env.objects:
+        data = obj.read()
+        if str(data.type) == 'MonoBehaviour' and str(data.name) == 'TextLabel':
+            tree = data.type_tree
+            with open('%s/%sTextLabel.json' % (JSON, region), 'w', encoding='utf8') as f:
+                json.dump(process_json(tree), f, indent=2, ensure_ascii=False)
 
 def parseMasters():
     for f in os.listdir(MASTER):

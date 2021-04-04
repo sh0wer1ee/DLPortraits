@@ -60,15 +60,14 @@ def processAsset(filePath):
     dataJson = {}
 
     baseName = os.path.basename(filePath)
-    am = UnityPy.AssetsManager(filePath)
-    for asset in am.assets.values():
-        for o in asset.objects.values():
-            data = o.read()
-            if str(data.type) == 'MonoBehaviour':
-                tree = data.type_tree
-                offset, indexTable = parseMono(tree)
-            if str(data.type) == 'Texture2D':
-                imageData[data.name] = data.image
+    env = UnityPy.load(filePath)
+    for obj in env.objects:
+        data = obj.read()
+        if str(data.type) == 'MonoBehaviour':
+            tree = data.type_tree
+            offset, indexTable = parseMono(tree)
+        if str(data.type) == 'Texture2D':
+            imageData[data.name] = data.image
  
     partsData = classifyFaceMouth(indexTable, baseName)
     
