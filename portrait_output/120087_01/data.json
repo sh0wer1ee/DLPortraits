@@ -1,0 +1,13 @@
+{
+  "offset": {
+    "x": 448,
+    "y": 174
+  },
+  "partsData": {
+    "faceParts": [
+      "./portrait_output/120087_01/120087_01_parts_c000.png",
+      "./portrait_output/120087_01/120087_01_parts_c001.png"
+    ],
+    "mouthParts": []
+  }
+}
