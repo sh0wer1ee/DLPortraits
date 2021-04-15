@@ -95,12 +95,12 @@ def appendLocalizedJson():
     sortedDic['recentlyAdded'] = localizedDirDataJson['recentlyAdded']
     
     with open('localizedDirData.json', 'w', encoding='utf8') as f:
-        json.dump(sortedDic, f, indent=2, ensure_ascii=False)
+        json.dump(sortedDic, f, indent=4, ensure_ascii=False)
 
 def main():
     start = timeit.default_timer()
 
-    textlabel.main('20210412_725KSe0jjK7dUQZq')
+    textlabel.main('20210415_tKNhlutrX4LPXPUk')
     appendLocalizedJson()
 
     end = timeit.default_timer()
