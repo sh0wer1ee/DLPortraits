@@ -73,6 +73,7 @@ def processAsset(filePath):
     
     dataJson['offset'] = offset
     dataJson['partsData'] = partsData
+    
 
     os.makedirs(os.path.join(OUTPUT, baseName), exist_ok=True)
 
@@ -96,6 +97,8 @@ def parseMono(mono):
         offsetY = int(table['position']['y'] - table['size']['y'] / 2)
         partsDataTable['x%s' % indexStr] = offsetX
         partsDataTable['y%s' % indexStr] = offsetY
+        partsDataTable['size_x'] = table['size']['x']
+        partsDataTable['size_y'] = table['size']['y']
         
     
     for index in mono['partsTextureIndexTable']:
@@ -132,12 +135,11 @@ def combineYCbCrA(imageData, baseName, cidx = -9, aidx = -9):
 
 def loadNhaam(imageData):
     # missing Nhaam's base Y file
-    am = UnityPy.AssetsManager(INPUT + '\\assets._gluonresources.images.emotion.story.chara.100007_01.parts\\100007_01_base_y')
-    for asset in am.assets.values():
-        for o in asset.objects.values():
-            data = o.read()
-            if str(data.type) == 'Texture2D':
-                imageData[data.name] = data.image
+    env = UnityPy.load(INPUT + '\\assets._gluonresources.images.emotion.story.chara.100007_01.parts\\100007_01_base_y')
+    for obj in env.objects:
+        data = obj.read()
+        if str(data.type) == 'Texture2D':
+            imageData[data.name] = data.image
     return imageData
 
 def classifyFaceMouth(indexTable, baseName):

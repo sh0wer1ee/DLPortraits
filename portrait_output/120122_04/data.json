@@ -1,7 +1,9 @@
 {
   "offset": {
     "x": 418,
-    "y": 336
+    "y": 336,
+    "size_x": 128.0,
+    "size_y": 128.0
   },
   "partsData": {
     "faceParts": [
