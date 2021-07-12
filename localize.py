@@ -14,13 +14,17 @@ textlabelENUS = {}
 for tid in textlabelJsonJP:
     textlabelJP[textlabelJsonJP[tid]['_Id']] = textlabelJsonJP[tid]['_Text']
 for tid in textlabelJsonZHCN:
-    textlabelZHCN[textlabelJsonZHCN[tid]['_Id']] = textlabelJsonZHCN[tid]['_Text']
+    textlabelZHCN[textlabelJsonZHCN[tid]['_Id']
+                  ] = textlabelJsonZHCN[tid]['_Text']
 for tid in textlabelJsonZHTW:
-    textlabelZHTW[textlabelJsonZHTW[tid]['_Id']] = textlabelJsonZHTW[tid]['_Text']
+    textlabelZHTW[textlabelJsonZHTW[tid]['_Id']
+                  ] = textlabelJsonZHTW[tid]['_Text']
 for tid in textlabelJsonENUS:
-    textlabelENUS[textlabelJsonENUS[tid]['_Id']] = textlabelJsonENUS[tid]['_Text']
+    textlabelENUS[textlabelJsonENUS[tid]['_Id']
+                  ] = textlabelJsonENUS[tid]['_Text']
 
 regions = ['jp', 'zh_cn', 'zh_tw', 'en_us']
+
 
 def getName(pid, locale):
     textlabel = {}
@@ -40,7 +44,7 @@ def getName(pid, locale):
     else:
         print('locale error!')
         exit(-1)
-    
+
     if pid.split('_')[0] == '100001':
         return playerName
     else:
@@ -54,27 +58,33 @@ def getName(pid, locale):
         except KeyError:
             return ''
 
+
 def getNameAllRegion(id):
     for r in regions:
         print('%s: %s' % (r, getName(id, r)))
 
+
 def generateLocalized():
-    dirDataJson = json.load(open('portrait_output/dirData.json', encoding='utf8'))
+    dirDataJson = json.load(
+        open('portrait_output/dirData.json', encoding='utf8'))
     #enDirDataJson = json.load(open('dirDataEN.json', encoding='utf8'))
     localizedDirDataJson = {"fileList": {}}
     for key in dirDataJson['fileList']:
         localDic = {}
         localDic['zh_cn'] = dirDataJson['fileList'][key]
         localDic['zh_tw'] = '%s' % (getName(key, 'zh_tw'))
-        localDic['en_us'] = '%s' % (getName(key, 'en_us')) # enDirDataJson['fileList'][key]
+        # enDirDataJson['fileList'][key]
+        localDic['en_us'] = '%s' % (getName(key, 'en_us'))
         localDic['jp'] = '%s' % (getName(key, 'jp'))
         localizedDirDataJson['fileList'][key] = localDic
     with open('localizedDirData.json', 'w', encoding='utf8') as f:
         json.dump(localizedDirDataJson, f, indent=2, ensure_ascii=False)
 
+
 def appendLocalizedJson():
     # Save my life
-    localizedDirDataJson = json.load(open('portrait_output/localizedDirData.json', encoding='utf8'))
+    localizedDirDataJson = json.load(
+        open('portrait_output/localizedDirData.json', encoding='utf8'))
     recentlyAdded = []
 
     for root, dirs, files in os.walk('portrait_asset', topdown=False):
@@ -85,17 +95,19 @@ def appendLocalizedJson():
                     localDic = {}
                     localDic['zh_cn'] = '%s' % (getName(f, 'zh_cn'))
                     localDic['zh_tw'] = '%s' % (getName(f, 'zh_tw'))
-                    localDic['en_us'] = '%s' % (getName(f, 'en_us')) 
+                    localDic['en_us'] = '%s' % (getName(f, 'en_us'))
                     localDic['jp'] = '%s' % (getName(f, 'jp'))
                     localizedDirDataJson['fileList'][f] = localDic
                     recentlyAdded.append(f)
     localizedDirDataJson['recentlyAdded'] = recentlyAdded
     sortedDic = {}
-    sortedDic['fileList'] = dict(sorted(localizedDirDataJson['fileList'].items(), key=lambda x:x[0]))
+    sortedDic['fileList'] = dict(
+        sorted(localizedDirDataJson['fileList'].items(), key=lambda x: x[0]))
     sortedDic['recentlyAdded'] = localizedDirDataJson['recentlyAdded']
-    
+
     with open('localizedDirData.json', 'w', encoding='utf8') as f:
         json.dump(sortedDic, f, indent=4, ensure_ascii=False)
+
 
 def main():
     start = timeit.default_timer()
@@ -104,8 +116,8 @@ def main():
     appendLocalizedJson()
 
     end = timeit.default_timer()
-    print('time spent: ' + str(end-start)) # 90 seconds..?
+    print('time spent: ' + str(end-start))  # 90 seconds..?
+
 
 if __name__ == '__main__':
     main()
-
