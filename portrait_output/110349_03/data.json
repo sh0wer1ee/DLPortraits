@@ -24,7 +24,16 @@
       "./portrait_output/110349_03/110349_03_parts_c027.png",
       "./portrait_output/110349_03/110349_03_parts_c028.png",
       "./portrait_output/110349_03/110349_03_parts_c029.png",
-      "./portrait_output/110349_03/110349_03_parts_c030.png"
+      "./portrait_output/110349_03/110349_03_parts_c030.png",
+      "./portrait_output/110349_03/110349_03_parts_c031.png",
+      "./portrait_output/110349_03/110349_03_parts_c038.png",
+      "./portrait_output/110349_03/110349_03_parts_c039.png",
+      "./portrait_output/110349_03/110349_03_parts_c040.png",
+      "./portrait_output/110349_03/110349_03_parts_c041.png",
+      "./portrait_output/110349_03/110349_03_parts_c042.png",
+      "./portrait_output/110349_03/110349_03_parts_c043.png",
+      "./portrait_output/110349_03/110349_03_parts_c044.png",
+      "./portrait_output/110349_03/110349_03_parts_c045.png"
     ],
     "mouthParts": [
       "./portrait_output/110349_03/110349_03_parts_c005.png",
@@ -40,13 +49,20 @@
       "./portrait_output/110349_03/110349_03_parts_c023.png",
       "./portrait_output/110349_03/110349_03_parts_c024.png",
       "./portrait_output/110349_03/110349_03_parts_c025.png",
-      "./portrait_output/110349_03/110349_03_parts_c031.png",
       "./portrait_output/110349_03/110349_03_parts_c032.png",
       "./portrait_output/110349_03/110349_03_parts_c033.png",
       "./portrait_output/110349_03/110349_03_parts_c034.png",
       "./portrait_output/110349_03/110349_03_parts_c035.png",
       "./portrait_output/110349_03/110349_03_parts_c036.png",
-      "./portrait_output/110349_03/110349_03_parts_c037.png"
+      "./portrait_output/110349_03/110349_03_parts_c037.png",
+      "./portrait_output/110349_03/110349_03_parts_c046.png",
+      "./portrait_output/110349_03/110349_03_parts_c047.png",
+      "./portrait_output/110349_03/110349_03_parts_c048.png",
+      "./portrait_output/110349_03/110349_03_parts_c049.png",
+      "./portrait_output/110349_03/110349_03_parts_c050.png",
+      "./portrait_output/110349_03/110349_03_parts_c051.png",
+      "./portrait_output/110349_03/110349_03_parts_c052.png",
+      "./portrait_output/110349_03/110349_03_parts_c053.png"
     ]
   }
 }
