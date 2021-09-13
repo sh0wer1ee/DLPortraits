@@ -1,7 +1,7 @@
 {
   "offset": {
-    "x": 454,
-    "y": 244,
+    "x": 443,
+    "y": 224,
     "size_x": 128.0,
     "size_y": 128.0
   },
@@ -23,12 +23,12 @@
       "./portrait_output/120019_01/120019_01_parts_c027.png",
       "./portrait_output/120019_01/120019_01_parts_c028.png",
       "./portrait_output/120019_01/120019_01_parts_c029.png",
+      "./portrait_output/120019_01/120019_01_parts_c036.png",
       "./portrait_output/120019_01/120019_01_parts_c037.png",
       "./portrait_output/120019_01/120019_01_parts_c038.png",
       "./portrait_output/120019_01/120019_01_parts_c039.png",
       "./portrait_output/120019_01/120019_01_parts_c040.png",
-      "./portrait_output/120019_01/120019_01_parts_c041.png",
-      "./portrait_output/120019_01/120019_01_parts_c042.png"
+      "./portrait_output/120019_01/120019_01_parts_c041.png"
     ],
     "mouthParts": [
       "./portrait_output/120019_01/120019_01_parts_c005.png",
@@ -51,13 +51,12 @@
       "./portrait_output/120019_01/120019_01_parts_c033.png",
       "./portrait_output/120019_01/120019_01_parts_c034.png",
       "./portrait_output/120019_01/120019_01_parts_c035.png",
-      "./portrait_output/120019_01/120019_01_parts_c036.png",
+      "./portrait_output/120019_01/120019_01_parts_c042.png",
       "./portrait_output/120019_01/120019_01_parts_c043.png",
       "./portrait_output/120019_01/120019_01_parts_c044.png",
       "./portrait_output/120019_01/120019_01_parts_c045.png",
       "./portrait_output/120019_01/120019_01_parts_c046.png",
-      "./portrait_output/120019_01/120019_01_parts_c047.png",
-      "./portrait_output/120019_01/120019_01_parts_c048.png"
+      "./portrait_output/120019_01/120019_01_parts_c047.png"
     ]
   }
 }

@@ -1,7 +1,7 @@
 {
   "offset": {
-    "x": 437,
-    "y": 190,
+    "x": 435,
+    "y": 181,
     "size_x": 128.0,
     "size_y": 128.0
   },
@@ -23,7 +23,9 @@
       "./portrait_output/100014_02/100014_02_parts_c025.png",
       "./portrait_output/100014_02/100014_02_parts_c026.png",
       "./portrait_output/100014_02/100014_02_parts_c027.png",
-      "./portrait_output/100014_02/100014_02_parts_c028.png"
+      "./portrait_output/100014_02/100014_02_parts_c028.png",
+      "./portrait_output/100014_02/100014_02_parts_c037.png",
+      "./portrait_output/100014_02/100014_02_parts_c038.png"
     ],
     "mouthParts": [
       "./portrait_output/100014_02/100014_02_parts_c005.png",
@@ -45,7 +47,9 @@
       "./portrait_output/100014_02/100014_02_parts_c033.png",
       "./portrait_output/100014_02/100014_02_parts_c034.png",
       "./portrait_output/100014_02/100014_02_parts_c035.png",
-      "./portrait_output/100014_02/100014_02_parts_c036.png"
+      "./portrait_output/100014_02/100014_02_parts_c036.png",
+      "./portrait_output/100014_02/100014_02_parts_c039.png",
+      "./portrait_output/100014_02/100014_02_parts_c040.png"
     ]
   }
 }
