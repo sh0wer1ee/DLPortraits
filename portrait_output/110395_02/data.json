@@ -1,0 +1,55 @@
+{
+  "offset": {
+    "x": 431,
+    "y": 305,
+    "size_x": 128.0,
+    "size_y": 128.0
+  },
+  "partsData": {
+    "faceParts": [
+      "./portrait_output/110395_02/110395_02_parts_c000.png",
+      "./portrait_output/110395_02/110395_02_parts_c001.png",
+      "./portrait_output/110395_02/110395_02_parts_c002.png",
+      "./portrait_output/110395_02/110395_02_parts_c003.png",
+      "./portrait_output/110395_02/110395_02_parts_c009.png",
+      "./portrait_output/110395_02/110395_02_parts_c010.png",
+      "./portrait_output/110395_02/110395_02_parts_c011.png",
+      "./portrait_output/110395_02/110395_02_parts_c012.png",
+      "./portrait_output/110395_02/110395_02_parts_c013.png",
+      "./portrait_output/110395_02/110395_02_parts_c014.png",
+      "./portrait_output/110395_02/110395_02_parts_c015.png",
+      "./portrait_output/110395_02/110395_02_parts_c016.png",
+      "./portrait_output/110395_02/110395_02_parts_c025.png",
+      "./portrait_output/110395_02/110395_02_parts_c026.png",
+      "./portrait_output/110395_02/110395_02_parts_c027.png",
+      "./portrait_output/110395_02/110395_02_parts_c028.png",
+      "./portrait_output/110395_02/110395_02_parts_c029.png",
+      "./portrait_output/110395_02/110395_02_parts_c037.png",
+      "./portrait_output/110395_02/110395_02_parts_c038.png"
+    ],
+    "mouthParts": [
+      "./portrait_output/110395_02/110395_02_parts_c004.png",
+      "./portrait_output/110395_02/110395_02_parts_c005.png",
+      "./portrait_output/110395_02/110395_02_parts_c006.png",
+      "./portrait_output/110395_02/110395_02_parts_c007.png",
+      "./portrait_output/110395_02/110395_02_parts_c008.png",
+      "./portrait_output/110395_02/110395_02_parts_c017.png",
+      "./portrait_output/110395_02/110395_02_parts_c018.png",
+      "./portrait_output/110395_02/110395_02_parts_c019.png",
+      "./portrait_output/110395_02/110395_02_parts_c020.png",
+      "./portrait_output/110395_02/110395_02_parts_c021.png",
+      "./portrait_output/110395_02/110395_02_parts_c022.png",
+      "./portrait_output/110395_02/110395_02_parts_c023.png",
+      "./portrait_output/110395_02/110395_02_parts_c024.png",
+      "./portrait_output/110395_02/110395_02_parts_c030.png",
+      "./portrait_output/110395_02/110395_02_parts_c031.png",
+      "./portrait_output/110395_02/110395_02_parts_c032.png",
+      "./portrait_output/110395_02/110395_02_parts_c033.png",
+      "./portrait_output/110395_02/110395_02_parts_c034.png",
+      "./portrait_output/110395_02/110395_02_parts_c035.png",
+      "./portrait_output/110395_02/110395_02_parts_c036.png",
+      "./portrait_output/110395_02/110395_02_parts_c039.png",
+      "./portrait_output/110395_02/110395_02_parts_c040.png"
+    ]
+  }
+}
