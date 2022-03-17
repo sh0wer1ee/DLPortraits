@@ -1,0 +1,15 @@
+{
+  "offset": {
+    "x": 360,
+    "y": 156,
+    "size_x": 256.0,
+    "size_y": 256.0
+  },
+  "partsData": {
+    "faceParts": [
+      "./portrait_output/210177_01/210177_01_parts_c000.png",
+      "./portrait_output/210177_01/210177_01_parts_c001.png"
+    ],
+    "mouthParts": []
+  }
+}
