@@ -445,9 +445,9 @@
             "jp": "ナーム"
         },
         "100007_03": {
-            "zh_cn": "纳姆（和服）",
+            "zh_cn": "纳姆（和服 通常）",
             "zh_tw": "那姆（和服）",
-            "en_us": "Notte (Kimono)",
+            "en_us": "Notte (Kimono Normal)",
             "jp": "ナーム（着物）"
         },
         "100007_06": {
@@ -469,9 +469,9 @@
             "jp": "ナーム（着物）"
         },
         "100008_01": {
-            "zh_cn": "妮娜",
+            "zh_cn": "妮娜（通常）",
             "zh_tw": "妮娜",
-            "en_us": "Nina",
+            "en_us": "Nina (Normal)",
             "jp": "ニーナ"
         },
         "100008_02": {
@@ -721,9 +721,9 @@
             "jp": "シェス（サマー）"
         },
         "100016_01": {
-            "zh_cn": "巴尔库斯",
+            "zh_cn": "巴尔库斯（通常）",
             "zh_tw": "范爾克斯",
-            "en_us": "Valyx",
+            "en_us": "Valyx (Normal)",
             "jp": "ヴァルクス"
         },
         "100016_02": {
@@ -739,9 +739,9 @@
             "jp": "ヴァルクス"
         },
         "100017_01": {
-            "zh_cn": "艾缪尔",
+            "zh_cn": "艾缪尔（通常）",
             "zh_tw": "埃米爾",
-            "en_us": "Emile",
+            "en_us": "Emile (Normal)",
             "jp": "エミュール"
         },
         "100017_02": {
@@ -1003,15 +1003,15 @@
             "jp": "シーラ"
         },
         "100044_02": {
-            "zh_cn": "席菈",
+            "zh_cn": "席菈（无感情）",
             "zh_tw": "希拉",
-            "en_us": "Sheila",
+            "en_us": "Sheila (Soul Imprisoned)",
             "jp": "シーラ"
         },
         "100044_03": {
-            "zh_cn": "席菈",
+            "zh_cn": "席菈（通常）",
             "zh_tw": "希拉",
-            "en_us": "Sheila",
+            "en_us": "Sheila (Normal)",
             "jp": "シーラ"
         },
         "100045_01": {
@@ -2059,16 +2059,16 @@
             "jp": "ピアチェ（浴衣）"
         },
         "110302_04": {
-            "zh_cn": "皮雅茜",
-            "zh_tw": "琵雅雀",
-            "en_us": "Pia",
-            "jp": "ピアチェ"
+            "zh_cn": "皮雅茜（女仆）",
+            "zh_tw": "琵雅雀（女僕）",
+            "en_us": "Pia (Housekeeper)",
+            "jp": "ピアチェ（お手伝い）"
         },
         "110302_05": {
-            "zh_cn": "皮雅茜",
-            "zh_tw": "琵雅雀",
-            "en_us": "Pia",
-            "jp": "ピアチェ"
+            "zh_cn": "皮雅茜（女仆 通常）",
+            "zh_tw": "琵雅雀（女僕）",
+            "en_us": "Pia (Housekeeper Normal)",
+            "jp": "ピアチェ（お手伝い）"
         },
         "110303_01": {
             "zh_cn": "埃利亚斯",
@@ -3019,9 +3019,9 @@
             "jp": "幻身ゾディアーク"
         },
         "110404_02": {
-            "zh_cn": "幻身佐迪亚克",
+            "zh_cn": "幻身佐迪亚克（佣人）",
             "zh_tw": "幻身索狄亞克",
-            "en_us": "Humanoid Zodiark",
+            "en_us": "Humanoid Zodiark (Housekeeper)",
             "jp": "幻身ゾディアーク"
         },
         "120006_01": {
@@ -4495,33 +4495,33 @@
             "jp": "ゾディアークゼロ"
         },
         "120250_01": {
-            "zh_cn": "始祖耶梦加得",
+            "zh_cn": "始祖耶梦加得（剪影）",
             "zh_tw": "耶夢加得‧零",
-            "en_us": "Midgardsormr Zero",
+            "en_us": "Midgardsormr Zero (Silhouette)",
             "jp": "ミドガルズオルムゼロ"
         },
         "120251_01": {
-            "zh_cn": "始祖布伦希尔德",
+            "zh_cn": "始祖布伦希尔德（剪影）",
             "zh_tw": "布倫希爾德‧零",
-            "en_us": "Brunhilda Zero",
+            "en_us": "Brunhilda Zero (Silhouette)",
             "jp": "ブリュンヒルデゼロ"
         },
         "120252_01": {
-            "zh_cn": "始祖墨丘利",
+            "zh_cn": "始祖墨丘利（剪影）",
             "zh_tw": "墨丘利‧零",
-            "en_us": "Mercury Zero",
+            "en_us": "Mercury Zero (Silhouette)",
             "jp": "マーキュリーゼロ"
         },
         "120253_01": {
-            "zh_cn": "始祖朱庇特",
+            "zh_cn": "始祖朱庇特（剪影）",
             "zh_tw": "朱庇特‧零",
-            "en_us": "Jupiter Zero",
+            "en_us": "Jupiter Zero (Silhouette)",
             "jp": "ユピテルゼロ"
         },
         "120254_01": {
-            "zh_cn": "始祖佐迪亚克",
+            "zh_cn": "始祖佐迪亚克（剪影）",
             "zh_tw": "索狄亞克‧零",
-            "en_us": "Zodiark Zero",
+            "en_us": "Zodiark Zero (Silhouette)",
             "jp": "ゾディアークゼロ"
         },
         "120255_01": {
