@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, maximum-scale=1.0" />
+    <link
+      rel="icon"
+      href="./icons/favicon.png"
+      type="image/png"
+      sizes="128x128"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+      crossorigin="anonymous"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+      crossorigin="anonymous"
+    ></script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-BXD1WES034"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-BXD1WES034");
+    </script>
+    <style>
+      .container {
+        display: inline-flex;
+        flex-wrap: wrap;
+      }
+      .flex-direction {
+        flex-direction: row;
+      }
+      .canvas-area {
+        display: flex;
+        justify-content: center;
+        width: 50%;
+        height: 100%;
+      }
+
+      .tool-area {
+        width: 50%;
+        height: 100%;
+      }
+
+      span {
+        font-size: 16px;
+        font-weight: bold;
+        display: block;
+        line-height: 132px;
+        text-align: center;
+      }
+
+      @media screen and (max-width: 500px) {
+        .flex-direction {
+          flex-direction: column;
+        }
+        .canvas-area {
+          margin: 5px;
+          display: flex;
+          justify-content: center;
+          width: 100%;
+          height: 100%;
+          border-right: none;
+        }
+        .tool-area {
+          margin: 5px;
+          width: 100%;
+          height: 100%;
+        }
+        .tool-area span {
+          line-height: 107px;
+        }
+      }
+    </style>
+    <title>Portrait Wyrmprints DIY</title>
+  </head>
+
+  <body>
+    <div class="container flex-direction">
+      <div class="canvas-area">
+        <canvas id="canvas-preview" width="200" height="324"></canvas>
+      </div>
+      <div class="tool-area">
+        <button id="download-btn" class="btn btn-success mb-2">
+          Download Image
+        </button>
+        <div id="slider-area"></div>
+        <div id="upload-area"></div>
+      </div>
+    </div>
+    <canvas hidden id="canvas-actual" width="600" height="972"></canvas>
+  </body>
+
+  <script type="text/javascript">
+    let drawing = false;
+    let framework = { loaded: false };
+    let portraitLayer = {
+      opacity: 1.0,
+      offsetX: 0.0,
+      offsetY: 0.0,
+      rotation: 0.0,
+      scale: 1.0,
+    };
+
+    init();
+
+    function init() {
+      let downloadBtn = document.getElementById("download-btn");
+      downloadBtn.addEventListener("click", downloadImage);
+      initPortraitLayer();
+      initSliderArea();
+      drawTalisman();
+    }
+
+    function initPortraitLayer() {
+      let image = document.createElement("img");
+      image.alt = "portrait layer";
+      image.addEventListener("load", drawTalisman);
+
+      let uploadArea = document.getElementById("upload-area");
+      let uploadButton = document.createElement("input");
+      uploadButton.classList.add("form-control");
+      uploadButton.type = "file";
+      uploadButton.accept = "image/*";
+      uploadButton.addEventListener("change", () => {
+        image.src = window.URL.createObjectURL(uploadButton.files[0]);
+        portraitLayer.image = image;
+      });
+      uploadArea.appendChild(uploadButton);
+    }
+
+    function initSliderArea() {
+      let sliderArea = document.getElementById("slider-area");
+      sliderArea.appendChild(
+        addSlider("Opacity", 0, 1, 0.01, 1, (value) => {
+          portraitLayer.opacity = value;
+          drawTalisman();
+        })
+      );
+      sliderArea.appendChild(
+        addSlider("X axis offset", -400, 400, 1, 0, (value) => {
+          portraitLayer.offsetX = value;
+          drawTalisman();
+        })
+      );
+      sliderArea.appendChild(
+        addSlider("Y axis offset", -400, 400, 1, 0, (value) => {
+          portraitLayer.offsetY = value;
+          drawTalisman();
+        })
+      );
+      sliderArea.appendChild(
+        addSlider("Rotation", -180, 180, 0.1, 0, (value) => {
+          portraitLayer.rotation = value;
+          drawTalisman();
+        })
+      );
+      let scaleSliderGroup = addSlider("Zoom", 0, 3, 0.1, 1, (value) => {
+        portraitLayer.scale = value;
+        drawTalisman();
+      });
+
+      let flipXLabel = document.createElement("label");
+      flipXLabel.innerText = "Flip Horizontally";
+      let flipX = document.createElement("input");
+      flipX.type = "checkbox";
+      flipX.addEventListener("change", function () {
+        portraitLayer.flipX = this.checked;
+        drawTalisman();
+      });
+      scaleSliderGroup.appendChild(flipX);
+      scaleSliderGroup.appendChild(flipXLabel);
+      sliderArea.appendChild(scaleSliderGroup);
+    }
+
+    function loadImage(src) {
+      let img = new Image();
+      img.crossOrigin = "anonymous";
+      img.src = src;
+      return new Promise((resolve, reject) => {
+        img.onload = () => resolve(img);
+        img.onerror = reject;
+      });
+    }
+
+    function syncSliderWithInput(slider, input) {
+      slider.addEventListener("input", function () {
+        input.value = this.value;
+      });
+      slider.addEventListener("change", function () {
+        input.dispatchEvent(new Event("change"));
+      });
+      input.addEventListener("input", function () {
+        slider.value = this.value;
+      });
+    }
+
+    async function loadFramework() {
+      if (!framework.loaded) {
+        framework.frameLayer = await loadImage("misc/talisman_flame.png");
+        framework.backgroundLayer = await loadImage("misc/talisman_bg.png");
+      }
+    }
+
+    function addSlider(labelText, min, max, step, startValue, callback) {
+      let container = document.createElement("div");
+      let label = document.createElement("label");
+      label.innerText = labelText;
+
+      let group = document.createElement("div");
+      group.classList.add("input-group");
+
+      let numInput = document.createElement("input");
+      numInput.classList.add("form-control");
+      //numInput.classList.add("w-25");
+      numInput.type = "number";
+      numInput.min = min;
+      numInput.max = max;
+      numInput.step = step;
+      numInput.value = startValue;
+
+      let slider = document.createElement("input");
+      slider.classList.add("form-control");
+      slider.type = "range";
+      slider.min = min;
+      slider.max = max;
+      slider.step = step;
+      slider.value = startValue;
+      let sliderDiv = document.createElement("div");
+
+      group.appendChild(numInput);
+      group.appendChild(slider);
+
+      container.appendChild(label);
+      container.appendChild(group);
+
+      syncSliderWithInput(slider, numInput);
+      numInput.addEventListener("change", function () {
+        callback(parseFloat(this.value));
+      });
+
+      return container;
+    }
+
+    function drawPortraitImage(ctx, portraitLayer, centerX, centerY) {
+      let width = portraitLayer.image.naturalWidth * portraitLayer.scale;
+      let height = portraitLayer.image.naturalHeight * portraitLayer.scale;
+      let x = centerX - width / 2 + portraitLayer.offsetX;
+      let y = centerY - height / 2 + portraitLayer.offsetY;
+
+      ctx.save();
+
+      ctx.translate(
+        centerX + portraitLayer.offsetX,
+        centerY + portraitLayer.offsetY
+      );
+
+      if (portraitLayer.flipX) {
+        ctx.scale(-1, 1);
+      }
+      if (portraitLayer.rotation !== 0) {
+        ctx.rotate((portraitLayer.rotation * Math.PI) / 180);
+      }
+      ctx.globalAlpha = portraitLayer.opacity;
+      ctx.translate(
+        -centerX - portraitLayer.offsetX,
+        -centerY - portraitLayer.offsetY
+      );
+      ctx.drawImage(portraitLayer.image, x, y, width, height);
+      ctx.restore();
+    }
+
+    async function drawTalisman() {
+      if (drawing) return;
+      drawing = true;
+
+      const canvas = document.getElementById("canvas-actual");
+      const preview = document.getElementById("canvas-preview");
+      const ctx = canvas.getContext("2d");
+      const ctxPreview = preview.getContext("2d");
+
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctxPreview.clearRect(0, 0, preview.width, preview.height);
+
+      await loadFramework();
+
+      ctx.drawImage(
+        framework.backgroundLayer,
+        0,
+        0,
+        canvas.width,
+        canvas.height
+      );
+
+      if (portraitLayer.image != undefined) {
+        drawPortraitImage(
+          ctx,
+          portraitLayer,
+          canvas.width / 2,
+          canvas.height / 2
+        );
+      }
+
+      ctx.drawImage(framework.frameLayer, 0, 0, canvas.width, canvas.height);
+
+      ctxPreview.drawImage(canvas, 0, 0, preview.width, preview.height);
+
+      drawing = false;
+    }
+
+    async function downloadImage() {
+      let downloadLink = document.createElement("a");
+      let canvas = document.getElementById("canvas-actual");
+      this.innerText = "generating...";
+      const blob = await new Promise((resolve) =>
+        canvas.toBlob(resolve, "image/png")
+      );
+      this.innerText = "Download Image";
+
+      downloadLink.href = URL.createObjectURL(blob);
+      downloadLink.setAttribute("download", "talisman_diy.png");
+      downloadLink.click();
+    }
+  </script>
+</html>
