@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#ffffff">
+<title data-i18n="site.title">Dragalia Lost Portrait Viewer</title>
+<link rel="icon" type="image/png" sizes="192x192" href="icon/favicon.png">
+<link rel="apple-touch-icon" href="icon/apple-touch-icon.png">
+<link rel="manifest" href="manifest.json">
+<link rel="stylesheet" href="css/app.css">
+<script src="js/theme.js"></script>
+<script type="module">
+  import { loadI18n, resolveLang, setLang } from './js/i18n.js';
+  loadI18n().then(() => setLang(resolveLang()));
+</script>
+</head>
+<body class="page-404">
+<main class="notfound">
+<p class="notfound-code">404</p>
+<h1 data-i18n="page.notfound"></h1>
+<p class="notfound-hint" data-i18n="page.notfound.hint"></p>
+<a class="notfound-back" href="./" data-i18n="page.back"></a>
+</main>
+</body>
+</html>

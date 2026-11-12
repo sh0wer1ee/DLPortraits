@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, follow">
+<meta name="theme-color" content="#ffffff">
+<meta name="description" content="Dragalia Lost portrait viewer — eye and mouth variants, negative filters, 1024² PNG export.">
+<title data-i18n="site.title">Dragalia Lost Portrait Viewer</title>
+<link rel="icon" type="image/png" sizes="192x192" href="icon/favicon.png">
+<link rel="apple-touch-icon" href="icon/apple-touch-icon.png">
+<link rel="manifest" href="manifest.json">
+<link rel="stylesheet" href="css/app.css">
+<script src="js/theme.js"></script>
+<script type="module" src="js/viewer.js"></script>
+</head>
+<body class="page-viewer">
+<header class="bar">
+  <a class="back" href="index.html" id="back" aria-label="Back">
+    <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <path d="M15.5 10h-11"/><path d="M9 4.5 3.5 10 9 15.5"/>
+    </svg>
+  </a>
+  <div class="heading">
+    <h1 class="title" id="name"></h1>
+    <p class="sub" id="current">—</p>
+  </div>
+  <div class="bar-actions">
+    <a class="bar-btn share" id="share" href="#" hidden>
+      <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M8.6 11.4a3.4 3.4 0 0 0 4.8 0l2-2a3.4 3.4 0 0 0-4.8-4.8l-1 1"/>
+        <path d="M11.4 8.6a3.4 3.4 0 0 0-4.8 0l-2 2a3.4 3.4 0 0 0 4.8 4.8l1-1"/>
+      </svg>
+      <span data-i18n="viewer.share"></span>
+    </a>
+    <button class="bar-btn primary" type="button" id="download" disabled>
+      <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M10 3.5v8.5"/><path d="M6.3 8.8 10 12.5l3.7-3.7"/><path d="M4.5 16h11"/>
+      </svg>
+      <span data-i18n="viewer.download"></span>
+    </button>
+    <div class="lang-picker" id="lang">
+      <button class="bar-btn lang-trigger" type="button" aria-haspopup="listbox" aria-expanded="false" aria-label="Language">
+        <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="10" cy="10" r="6.6"/><path d="M3.6 10h12.8"/>
+          <path d="M10 3.4c1.9 1.8 2.9 4.1 2.9 6.6s-1 4.8-2.9 6.6c-1.9-1.8-2.9-4.1-2.9-6.6s1-4.8 2.9-6.6Z"/>
+        </svg>
+        <span class="lang-current"></span>
+        <svg class="icon-caret" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M5.5 8 10 12.5 14.5 8"/>
+        </svg>
+      </button>
+    </div>
+    <button class="bar-btn" type="button" data-theme-toggle id="themeBtn" role="switch" aria-checked="false">
+      <svg class="icon-moon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M16 12.3A6.4 6.4 0 0 1 7.7 4a6.6 6.6 0 1 0 8.3 8.3Z"/>
+      </svg>
+      <svg class="icon-sun" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <circle cx="10" cy="10" r="3.3"/>
+        <path d="M10 2.8v1.7M10 15.5v1.7M2.8 10h1.7M15.5 10h1.7M5 5l1.2 1.2M13.8 13.8 15 15M15 5l-1.2 1.2M6.2 13.8 5 15"/>
+      </svg>
+      <span class="theme-dark" data-i18n="theme.dark"></span>
+      <span class="theme-light" data-i18n="theme.light"></span>
+    </button>
+    <button class="bar-btn menu-btn" type="button" id="more" aria-haspopup="true" aria-expanded="false" aria-controls="more-panel" aria-label="More">
+      <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true">
+        <path d="M4 6h12M4 10h12M4 14h12"/>
+      </svg>
+    </button>
+  </div>
+
+  <!-- portrait mode collapse -->
+  <div class="more-panel" id="more-panel" hidden>
+    <div class="more-head" id="slot-share">
+      <div class="lang-picker" id="lang-m">
+        <button class="bar-btn lang-trigger" type="button" aria-haspopup="listbox" aria-expanded="false" aria-label="Language">
+          <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="10" cy="10" r="6.6"/><path d="M3.6 10h12.8"/>
+            <path d="M10 3.4c1.9 1.8 2.9 4.1 2.9 6.6s-1 4.8-2.9 6.6c-1.9-1.8-2.9-4.1-2.9-6.6s1-4.8 2.9-6.6Z"/>
+          </svg>
+          <span class="lang-current"></span>
+          <svg class="icon-caret" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M5.5 8 10 12.5 14.5 8"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+    <div class="more-slot" id="slot-auto"></div>
+    <div class="more-slot" id="slot-fx"></div>
+  </div>
+</header>
+
+<main class="work">
+  <section class="stage-wrap">
+    <canvas id="stage" width="1024" height="1024" aria-label="Portrait"></canvas>
+    <p class="empty" id="empty" data-i18n="viewer.empty"></p>
+  </section>
+
+  <aside class="rail" id="rail" aria-label="Expressions">
+    <button class="rail-toggle" type="button" id="rail-toggle" aria-expanded="false" aria-controls="rail-body">
+      <span data-i18n="viewer.expressions"></span>
+      <span class="rail-count" id="rail-count"></span>
+      <svg class="icon-caret" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M5.5 12.5 10 8l4.5 4.5"/>
+      </svg>
+    </button>
+    <div class="rail-body" id="rail-body"></div>
+  </aside>
+</main>
+
+<footer class="controls">
+  <div class="group" id="group-eye">
+    <span class="label" id="eye-label" data-i18n="controls.eyes"></span>
+    <div class="seg" id="eye" role="group" aria-labelledby="eye-label">
+      <button type="button" data-value="0" aria-pressed="true" data-i18n="controls.eyes.open"></button>
+      <button type="button" data-value="1" aria-pressed="false" data-i18n="controls.eyes.close"></button>
+    </div>
+  </div>
+  <div class="group" id="group-mouth">
+    <span class="label" id="mouth-label" data-i18n="controls.mouth"></span>
+    <div class="seg" id="mouth" role="group" aria-labelledby="mouth-label">
+      <button type="button" data-value="0" aria-pressed="true" data-i18n="controls.mouth.close"></button>
+      <button type="button" data-value="1" aria-pressed="false" data-i18n="controls.mouth.open"></button>
+    </div>
+  </div>
+  <div class="group" id="group-auto">
+    <span class="label" id="auto-label" data-i18n="controls.auto"></span>
+    <div class="seg seg-toggle" id="auto" role="group" aria-labelledby="auto-label">
+      <button type="button" role="switch" data-key="eye" aria-checked="false" data-i18n="controls.auto.blink"></button>
+      <button type="button" role="switch" data-key="mouth" aria-checked="false" data-i18n="controls.auto.lip"></button>
+    </div>
+  </div>
+  <div class="group" id="group-fx">
+    <span class="label" id="fx-label" data-i18n="controls.fx"></span>
+    <div class="seg seg-toggle" id="fx" role="group" aria-labelledby="fx-label">
+      <button type="button" data-value="1" aria-pressed="false" data-i18n="fx.purple"></button>
+      <button type="button" data-value="2" aria-pressed="false" data-i18n="fx.gray"></button>
+    </div>
+  </div>
+  <p class="visually-hidden" id="live" role="status" aria-live="polite"></p>
+</footer>
+
+</body>
+</html>

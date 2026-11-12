@@ -1,0 +1,178 @@
+{
+  "languages": [
+    "zh_cn",
+    "zh_tw",
+    "jp",
+    "en_us"
+  ],
+  "strings": {
+    "gallery.search.placeholder": {
+      "zh_cn": "关键词搜索",
+      "zh_tw": "關鍵字搜尋",
+      "jp": "名前・IDで検索",
+      "en_us": "Search by name or ID"
+    },
+    "gallery.empty": {
+      "zh_cn": "角色不存在",
+      "zh_tw": "角色不存在",
+      "jp": "該当するキャラクターがいません",
+      "en_us": "No matching characters"
+    },
+    "gallery.card.label": {
+      "zh_cn": "{name}（{id}）",
+      "zh_tw": "{name}（{id}）",
+      "jp": "{name}（{id}）",
+      "en_us": "{name} ({id})"
+    },
+    "theme.dark": {
+      "zh_cn": "深色模式",
+      "zh_tw": "深色模式",
+      "jp": "ダークモード",
+      "en_us": "Dark mode"
+    },
+    "theme.light": {
+      "zh_cn": "浅色模式",
+      "zh_tw": "淺色模式",
+      "jp": "ライトモード",
+      "en_us": "Light mode"
+    },
+    "viewer.expressions": {
+      "zh_cn": "表情",
+      "zh_tw": "表情",
+      "jp": "表情",
+      "en_us": "Expressions"
+    },
+    "viewer.loading": {
+      "zh_cn": "载入中",
+      "zh_tw": "載入中",
+      "jp": "読み込み中",
+      "en_us": "Loading"
+    },
+    "viewer.share": {
+      "zh_cn": "链接分享",
+      "zh_tw": "連結分享",
+      "jp": "リンクをコピー",
+      "en_us": "Copy link"
+    },
+    "viewer.share.done": {
+      "zh_cn": "已复制",
+      "zh_tw": "已複製",
+      "jp": "コピーしました",
+      "en_us": "Copied"
+    },
+    "viewer.share.failed": {
+      "zh_cn": "复制失败",
+      "zh_tw": "複製失敗",
+      "jp": "コピー失敗",
+      "en_us": "Copy failed"
+    },
+    "viewer.download": {
+      "zh_cn": "导出图像",
+      "zh_tw": "匯出圖像",
+      "jp": "画像を保存",
+      "en_us": "Save Image"
+    },
+    "viewer.empty": {
+      "zh_cn": "角色不存在",
+      "zh_tw": "角色不存在",
+      "jp": "キャラクターが見つかりません",
+      "en_us": "Character not found"
+    },
+    "controls.eyes": {
+      "zh_cn": "眼睛",
+      "zh_tw": "眼睛",
+      "jp": "目",
+      "en_us": "Eyes"
+    },
+    "controls.eyes.open": {
+      "zh_cn": "睁眼",
+      "zh_tw": "睜眼",
+      "jp": "開き",
+      "en_us": "Open"
+    },
+    "controls.eyes.close": {
+      "zh_cn": "闭眼",
+      "zh_tw": "閉眼",
+      "jp": "閉じ",
+      "en_us": "Closed"
+    },
+    "controls.mouth": {
+      "zh_cn": "嘴",
+      "zh_tw": "嘴",
+      "jp": "口",
+      "en_us": "Mouth"
+    },
+    "controls.mouth.close": {
+      "zh_cn": "自然状态",
+      "zh_tw": "自然狀態",
+      "jp": "閉じ",
+      "en_us": "Closed"
+    },
+    "controls.mouth.open": {
+      "zh_cn": "说话状态",
+      "zh_tw": "說話狀態",
+      "jp": "開き",
+      "en_us": "Open"
+    },
+    "controls.auto": {
+      "zh_cn": "自动播放",
+      "zh_tw": "自動播放",
+      "jp": "アニメーション",
+      "en_us": "Animation"
+    },
+    "controls.auto.blink": {
+      "zh_cn": "眨眼",
+      "zh_tw": "眨眼",
+      "jp": "まばたき",
+      "en_us": "Blink"
+    },
+    "controls.auto.lip": {
+      "zh_cn": "说话",
+      "zh_tw": "說話",
+      "jp": "口パク",
+      "en_us": "Talk"
+    },
+    "controls.fx": {
+      "zh_cn": "滤镜",
+      "zh_tw": "濾鏡",
+      "jp": "フィルター",
+      "en_us": "Effects"
+    },
+    "fx.purple": {
+      "zh_cn": "紫色负片",
+      "zh_tw": "紫色負片",
+      "jp": "ネガ（紫）",
+      "en_us": "Negative (purple)"
+    },
+    "fx.gray": {
+      "zh_cn": "灰色负片",
+      "zh_tw": "灰色負片",
+      "jp": "ネガ（グレー）",
+      "en_us": "Negative (gray)"
+    },
+    "page.notfound": {
+      "zh_cn": "页面不存在",
+      "zh_tw": "頁面不存在",
+      "jp": "ページが見つかりません",
+      "en_us": "Page not found"
+    },
+    "page.notfound.hint": {
+      "zh_cn": "链接可能过期了，或者这个角色id不存在。",
+      "zh_tw": "連結可能已經失效，或這個角色id不存在。",
+      "jp": "リンクが古いか、キャラクターidが存在しません。",
+      "en_us": "The link may be stale, or that character id doesn't exist."
+    },
+    "page.back": {
+      "zh_cn": "返回角色列表",
+      "zh_tw": "返回角色列表",
+      "jp": "キャラクター一覧へ戻る",
+      "en_us": "Back to all characters"
+    },
+    "site.title": {
+      "zh_cn": "龙约立绘查看器",
+      "zh_tw": "龍絆立繪查看工具",
+      "jp": "[ドラガリ]カスタム立ち絵",
+      "en_us": "Dragalia Lost Portrait Viewer"
+    }
+  }
+}
